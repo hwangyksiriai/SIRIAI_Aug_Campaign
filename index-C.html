@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Siriai · SIRIAI 8월 캠페인 모집 (고료 200,000원)</title>
+<title>Siriai · SIRIAI 8월 캠페인 모집</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Nanum+Myeongjo:wght@400;700;800&family=Black+Han+Sans&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
@@ -297,8 +297,9 @@
 <script>
 (function () {
   var IMG = 'https://raw.githubusercontent.com/hwangyksiriai/siriai_skincare/main/images/';
-  var SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwNpcZCYAjNp2fl0Ddvaasi8zgMpRtyHmEG1emqyGoB4lHYvGAfal6d2jSIZXoTO7mT3g/exec';
+  var SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwTB3Y16KXlBsqBtMrSRwNXG7IMG6tdgtcAme8PL0XB9SGiEMLs0bbJVuIE_0_n66xL/exec';
   var CAMPAIGN_AMOUNT = '200,000원';
+  var DIVISION = '신규';
   var lineup = [
     { name: 'COSRX', file: 'cosrx.png' },
     { name: 'Pretty Actually', file: 'pretty-actually.png' },
@@ -461,6 +462,7 @@
     if (!agreed) { alert('필수 동의 항목에 체크해 주세요.'); return; }
 
     var payload = {
+      division: DIVISION,
       amount: CAMPAIGN_AMOUNT,
       support_type: supportType === 'all' ? '전체 지원' : '개별 지원',
       brands: supportType === 'all' ? '전체' : selected.join(', '),
