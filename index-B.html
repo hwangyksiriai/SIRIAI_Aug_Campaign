@@ -475,8 +475,6 @@
     });
   }
 
-  function sleep(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
-
   function resetForm() {
     form.reset();
     selected = []; renderBrands();
@@ -487,7 +485,7 @@
     brandSelect.style.display = 'none';
   }
 
-  // submit → 구글 시트 전송 (전체 지원 = 1행 '전체', 개별 지원 = 선택 브랜드마다 1행씩)
+  // submit → 구글 시트 전송 (1인 1행, 선택한 브랜드는 열로 나열)
   form.addEventListener('submit', function (e) {
     e.preventDefault();
     if (!form.checkValidity()) { form.reportValidity(); return; }
@@ -495,10 +493,11 @@
     if (!agreed) { alert('필수 동의 항목에 체크해 주세요.'); return; }
 
     var addressFull = (val('address') + ' ' + val('addressDetail')).trim();
-    var baseCommon = {
+    var payload = {
       division: DIVISION,
       amount: CAMPAIGN_AMOUNT,
       support_type: supportType === 'all' ? '전체 지원' : '개별 지원',
+      brands: supportType === 'all' ? ['전체'] : selected.slice(),
       name: val('name'),
       instagram: val('instagram'),
       phone: val('phone'),
@@ -508,27 +507,13 @@
       notes: val('memo'),
       agree: '동의'
     };
-    var brandRows = supportType === 'all' ? ['전체'] : selected.slice();
-
-    function sendRow(brandName) {
-      var payload = Object.assign({}, baseCommon, { brands: brandName });
-      return fetch(SHEET_ENDPOINT, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) })
-        .catch(function (err) { console.error('시트 전송 실패:', err); });
-    }
 
     if (SHEET_ENDPOINT && SHEET_ENDPOINT.indexOf('PASTE_') !== 0) {
-      var chain = Promise.resolve();
-      brandRows.forEach(function (b) {
-        chain = chain.then(function () { return sendRow(b); }).then(function () { return sleep(400); });
-      });
-      chain.then(function () {
-        alert('지원서가 제출되었습니다.');
-        resetForm();
-      });
-    } else {
-      alert('지원서가 제출되었습니다.');
-      resetForm();
+      fetch(SHEET_ENDPOINT, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) })
+        .catch(function (err) { console.error('시트 전송 실패:', err); });
     }
+    alert('지원서가 제출되었습니다.');
+    resetForm();
   });
 })();
 </script>
