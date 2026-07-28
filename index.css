@@ -1,0 +1,131 @@
+/* Google Fonts 및 4차 리뉴얼 기본 테마 설정 */
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@800;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap');
+
+:root {
+    --color-brand-primary: #1C1917;
+    --color-brand-hover: #0C0A09;
+    --color-brand-muted: #78716C;
+    --color-bg-base: #FDFBF7;
+    --color-accent: #C87A6B;
+    --color-accent-hover: #B66A5B;
+}
+
+body {
+    font-family: 'Noto Sans KR', sans-serif;
+    background-color: var(--color-bg-base);
+    color: #1c1917; /* stone-900 */
+}
+
+/* Apple Music 스타일 타이트 트랙 자간 */
+.premium-title {
+    letter-spacing: -0.04em;
+}
+
+/* 큼직한 인풋 서식 고도화 (.input-luxury) */
+.input-luxury {
+    background-color: #F8F9FA;
+    border: 1px solid #E7E5E4;
+    border-radius: 1rem;
+    padding: 1.125rem 1.25rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: #1c1917;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.input-luxury:focus {
+    outline: none;
+    background-color: #FFFFFF;
+    border-color: var(--color-brand-primary);
+    box-shadow: 0 0 0 5px rgba(28, 25, 23, 0.05);
+}
+
+/* 라디오 / 체크박스 카드 스타일 프리미엄 터치 효과 */
+.selection-card {
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.selection-card:hover {
+    border-color: var(--color-brand-primary);
+}
+
+.selection-card:active {
+    transform: scale(0.98);
+}
+
+/* 아코디언 드롭다운 부드러운 슬라이딩 트랜지션 */
+.accordion-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease;
+    opacity: 0;
+}
+
+.accordion-content.open {
+    opacity: 1;
+}
+
+/* 개별 카드 컴포넌트에 부여할 마이크로 호버 승격 섀도우 */
+.card-premium {
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.card-premium:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 20px 40px -15px rgba(28, 25, 23, 0.05);
+}
+
+/* 무드 갤러리 무한 흐름 마퀴 (가로 자동 스크롤) */
+.marquee-wrap {
+    position: relative;
+    overflow: hidden;
+    -webkit-mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
+    mask-image: linear-gradient(to right, transparent 0, #000 6%, #000 94%, transparent 100%);
+}
+
+.marquee-track {
+    display: flex;
+    width: max-content;
+    animation: marquee-scroll 38s linear infinite;
+}
+
+.marquee-wrap:hover .marquee-track {
+    animation-play-state: paused;
+}
+
+@keyframes marquee-scroll {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+}
+
+/* 카카오 우편번호 서비스 레이어 모달 */
+#postcode-layer {
+    display: none;
+    position: fixed;
+    overflow: hidden;
+    z-index: 100;
+    -webkit-overflow-scrolling: touch;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15);
+    border-radius: 1.25rem;
+    border: 1px solid #EAE6DF;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 커스텀 알림/모달 페이드인 애니메이션 */
+@keyframes fadeIn {
+    from { opacity: 0; transform: scale(0.95) translate(-50%, -50%); }
+    to { opacity: 1; transform: scale(1) translate(-50%, -50%); }
+}
+
+@keyframes fadeInOverlay {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.animate-fade-in {
+    animation: fadeIn 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-fade-in-overlay {
+    animation: fadeInOverlay 0.2s ease-out forwards;
+}

@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>시리아이 8월 캠페인 일괄 모집 · 캠페인 안내</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            primary: '#1C1917',
+                            muted: '#78716C',
+                            accent: '#C87A6B',
+                            accentHover: '#B66A5B',
+                            bg: '#FDFBF7',
+                            card: '#FFFFFF',
+                            border: '#E7E5E4'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Premium Font Family Load -->
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@800;900&family=Noto+Sans+KR:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="index.css">
+</head>
+<body class="bg-brand-bg text-stone-900 antialiased py-8 md:py-16 px-4">
+
+    <!-- 비밀번호 게이트 -->
+    <div id="password-gate" class="fixed inset-0 z-50 bg-brand-bg flex items-center justify-center px-4">
+        <form id="password-form" class="w-full max-w-xs bg-white border border-stone-200/70 rounded-3xl p-6 shadow-[0_15px_45px_rgba(28,25,23,0.06)] space-y-4 text-center">
+            <p class="text-xs font-black tracking-widest text-brand-accent uppercase">Siriai</p>
+            <h2 class="text-lg font-bold text-stone-900">비밀번호를 입력해 주세요</h2>
+            <input id="password-input" type="password" inputmode="numeric" autocomplete="off"
+                class="w-full border border-stone-200 rounded-xl px-4 py-2.5 text-center text-sm focus:outline-none focus:border-brand-accent"
+                placeholder="비밀번호">
+            <p id="password-error" class="hidden text-xs font-bold text-rose-500">비밀번호가 올바르지 않습니다.</p>
+            <button type="submit"
+                class="w-full bg-brand-primary hover:bg-brand-accentHover text-white text-sm font-bold py-2.5 rounded-xl transition-all duration-200">확인</button>
+        </form>
+    </div>
+
+    <div class="w-full max-w-2xl mx-auto space-y-12">
+
+        <!-- TOP BRANDING ROW -->
+        <div class="flex justify-between items-center border-b border-stone-200 pb-3">
+            <span class="text-xs font-black tracking-widest text-stone-900 uppercase">Siriai</span>
+            <span class="text-xs font-bold text-brand-accent bg-brand-accent/10 px-2.5 py-0.5 rounded-full">모집 중</span>
+        </div>
+
+        <!-- 헤더 -->
+        <header class="text-left space-y-4">
+            <h1 class="text-4xl md:text-5xl font-black text-stone-950 premium-title leading-[1.15] tracking-tight">
+                시리아이 8월 캠페인<br>일괄 모집
+            </h1>
+            <p class="text-sm md:text-base text-brand-muted font-medium leading-relaxed">
+                시리아이 8월 캠페인 일괄 모집입니다. 아래에서 고료 유형을 선택해 지원서를 작성해 주세요.
+            </p>
+        </header>
+
+        <!-- 무드 갤러리: 브랜드 화보 가로 무한 흐름 마퀴 -->
+        <section class="bg-white border border-stone-200/70 rounded-3xl p-5 md:p-6 shadow-[0_15px_45px_rgba(28,25,23,0.015)] card-premium space-y-4 overflow-hidden">
+            <div class="flex items-center gap-2 pb-3 border-b border-stone-100 mb-1">
+                <span class="text-xs font-black tracking-wider text-brand-accent uppercase">Mood Gallery</span>
+                <h4 class="text-lg font-bold text-stone-900 tracking-tight">캠페인 브랜드 라인업</h4>
+            </div>
+            <div class="marquee-wrap">
+                <div class="marquee-track gap-5 py-2">
+
+                    <div class="flex-shrink-0 w-40 space-y-2.5"><div class="aspect-[3/4] rounded-2xl overflow-hidden border-2 border-black bg-stone-900"><img src="https://raw.githubusercontent.com/hwangyksiriai/siriai_skincare/main/images/itfu.png" alt="if:fu" class="w-full h-full object-cover"></div><p class="text-center text-sm font-bold text-white bg-black rounded-lg py-1.5">if:fu</p></div>
+                    <div class="flex-shrink-0 w-40 space-y-2.5"><div class="aspect-[3/4] rounded-2xl overflow-hidden border-2 border-black bg-stone-900"><img src="https://raw.githubusercontent.com/hwangyksiriai/siriai_skincare/main/images/lusom.png" alt="LUSOM" class="w-full h-full object-cover"></div><p class="text-center text-sm font-bold text-white bg-black rounded-lg py-1.5">LUSOM</p></div>
+
+                    <div class="flex-shrink-0 w-40 space-y-2.5"><div class="aspect-[3/4] rounded-2xl overflow-hidden border-2 border-black bg-stone-900"><img src="https://raw.githubusercontent.com/hwangyksiriai/siriai_skincare/main/images/skinsignal.png" alt="SKINSIGNAL" class="w-full h-full object-cover"></div><p class="text-center text-sm font-bold text-white bg-black rounded-lg py-1.5">SKINSIGNAL</p></div>
+                    <div class="flex-shrink-0 w-40 space-y-2.5"><div class="aspect-[3/4] rounded-2xl overflow-hidden border-2 border-black bg-stone-900"><img src="https://raw.githubusercontent.com/hwangyksiriai/siriai_skincare/main/images/yadah.png" alt="YADAH" class="w-full h-full object-cover"></div><p class="text-center text-sm font-bold text-white bg-black rounded-lg py-1.5">YADAH</p></div>
+                    <div class="flex-shrink-0 w-40 space-y-2.5"><div class="aspect-[3/4] rounded-2xl overflow-hidden border-2 border-black bg-stone-900"><img src="https://raw.githubusercontent.com/hwangyksiriai/siriai_skincare/main/images/%EB%89%B4%EB%A6%AC%ED%81%B4.png" alt="NURICLE" class="w-full h-full object-cover"></div><p class="text-center text-sm font-bold text-white bg-black rounded-lg py-1.5">NURICLE</p></div>
+                    <div class="flex-shrink-0 w-40 space-y-2.5"><div class="aspect-[3/4] rounded-2xl overflow-hidden border-2 border-black bg-stone-900"><img src="https://raw.githubusercontent.com/hwangyksiriai/siriai_skincare/main/images/%EB%AC%B4%EC%8B%A0%EC%82%AC%EC%8A%A4%ED%83%A0%EB%8B%A4%EB%93%9C%EB%B7%B0%ED%8B%B0.png" alt="MUSINSA STANDARD BEAUTY" class="w-full h-full object-cover"></div><p class="text-center text-sm font-bold text-white bg-black rounded-lg py-1.5">MUSINSA STANDARD BEAUTY</p></div>
+                    <div class="flex-shrink-0 w-40 space-y-2.5"><div class="aspect-[3/4] rounded-2xl overflow-hidden border-2 border-black bg-stone-900"><img src="https://raw.githubusercontent.com/hwangyksiriai/siriai_skincare/main/images/%EB%B0%94%EC%9D%B4%EB%89%B4%EC%85%80.png" alt="BYNEWCELL" class="w-full h-full object-cover"></div><p class="text-center text-sm font-bold text-white bg-black rounded-lg py-1.5">BYNEWCELL</p></div>
+                    <div class="flex-shrink-0 w-40 space-y-2.5"><div class="aspect-[3/4] rounded-2xl overflow-hidden border-2 border-black bg-stone-900"><img src="https://raw.githubusercontent.com/hwangyksiriai/siriai_skincare/main/images/%EC%9D%B4%EB%8B%88%EC%8A%A4%ED%94%84%EB%A6%AC.png" alt="INNISFREE" class="w-full h-full object-cover"></div><p class="text-center text-sm font-bold text-white bg-black rounded-lg py-1.5">INNISFREE</p></div>
+                    <div class="flex-shrink-0 w-40 space-y-2.5"><div class="aspect-[3/4] rounded-2xl overflow-hidden border-2 border-black bg-stone-900"><img src="https://raw.githubusercontent.com/hwangyksiriai/siriai_skincare/main/images/%EC%BF%BC%EB%93%9C%EC%8E%A8%EB%9D%BC.png" alt="QUADTHERA" class="w-full h-full object-cover"></div><p class="text-center text-sm font-bold text-white bg-black rounded-lg py-1.5">QUADTHERA</p></div>
+                    <!-- 2nd set -->
+
+                    <div class="flex-shrink-0 w-40 space-y-2.5" aria-hidden="true"><div class="aspect-[3/4] rounded-2xl overflow-hidden border-2 border-black bg-stone-900"><img src="https://raw.githubusercontent.com/hwangyksiriai/siriai_skincare/main/images/itfu.png" alt="" class="w-full h-full object-cover"></div><p class="text-center text-sm font-bold text-white bg-black rounded-lg py-1.5">if:fu</p></div>
+                    <div class="flex-shrink-0 w-40 space-y-2.5" aria-hidden="true"><div class="aspect-[3/4] rounded-2xl overflow-hidden border-2 border-black bg-stone-900"><img src="https://raw.githubusercontent.com/hwangyksiriai/siriai_skincare/main/images/lusom.png" alt="" class="w-full h-full object-cover"></div><p class="text-center text-sm font-bold text-white bg-black rounded-lg py-1.5">LUSOM</p></div>
+
+                    <div class="flex-shrink-0 w-40 space-y-2.5" aria-hidden="true"><div class="aspect-[3/4] rounded-2xl overflow-hidden border-2 border-black bg-stone-900"><img src="https://raw.githubusercontent.com/hwangyksiriai/siriai_skincare/main/images/skinsignal.png" alt="" class="w-full h-full object-cover"></div><p class="text-center text-sm font-bold text-white bg-black rounded-lg py-1.5">SKINSIGNAL</p></div>
+                    <div class="flex-shrink-0 w-40 space-y-2.5" aria-hidden="true"><div class="aspect-[3/4] rounded-2xl overflow-hidden border-2 border-black bg-stone-900"><img src="https://raw.githubusercontent.com/hwangyksiriai/siriai_skincare/main/images/yadah.png" alt="" class="w-full h-full object-cover"></div><p class="text-center text-sm font-bold text-white bg-black rounded-lg py-1.5">YADAH</p></div>
+                    <div class="flex-shrink-0 w-40 space-y-2.5" aria-hidden="true"><div class="aspect-[3/4] rounded-2xl overflow-hidden border-2 border-black bg-stone-900"><img src="https://raw.githubusercontent.com/hwangyksiriai/siriai_skincare/main/images/%EB%89%B4%EB%A6%AC%ED%81%B4.png" alt="" class="w-full h-full object-cover"></div><p class="text-center text-sm font-bold text-white bg-black rounded-lg py-1.5">NURICLE</p></div>
+                    <div class="flex-shrink-0 w-40 space-y-2.5" aria-hidden="true"><div class="aspect-[3/4] rounded-2xl overflow-hidden border-2 border-black bg-stone-900"><img src="https://raw.githubusercontent.com/hwangyksiriai/siriai_skincare/main/images/%EB%AC%B4%EC%8B%A0%EC%82%AC%EC%8A%A4%ED%83%A0%EB%8B%A4%EB%93%9C%EB%B7%B0%ED%8B%B0.png" alt="" class="w-full h-full object-cover"></div><p class="text-center text-sm font-bold text-white bg-black rounded-lg py-1.5">MUSINSA STANDARD BEAUTY</p></div>
+                    <div class="flex-shrink-0 w-40 space-y-2.5" aria-hidden="true"><div class="aspect-[3/4] rounded-2xl overflow-hidden border-2 border-black bg-stone-900"><img src="https://raw.githubusercontent.com/hwangyksiriai/siriai_skincare/main/images/%EB%B0%94%EC%9D%B4%EB%89%B4%EC%85%80.png" alt="" class="w-full h-full object-cover"></div><p class="text-center text-sm font-bold text-white bg-black rounded-lg py-1.5">BYNEWCELL</p></div>
+                    <div class="flex-shrink-0 w-40 space-y-2.5" aria-hidden="true"><div class="aspect-[3/4] rounded-2xl overflow-hidden border-2 border-black bg-stone-900"><img src="https://raw.githubusercontent.com/hwangyksiriai/siriai_skincare/main/images/%EC%9D%B4%EB%8B%88%EC%8A%A4%ED%94%84%EB%A6%AC.png" alt="" class="w-full h-full object-cover"></div><p class="text-center text-sm font-bold text-white bg-black rounded-lg py-1.5">INNISFREE</p></div>
+                    <div class="flex-shrink-0 w-40 space-y-2.5" aria-hidden="true"><div class="aspect-[3/4] rounded-2xl overflow-hidden border-2 border-black bg-stone-900"><img src="https://raw.githubusercontent.com/hwangyksiriai/siriai_skincare/main/images/%EC%BF%BC%EB%93%9C%EC%8E%A8%EB%9D%BC.png" alt="" class="w-full h-full object-cover"></div><p class="text-center text-sm font-bold text-white bg-black rounded-lg py-1.5">QUADTHERA</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 고료 유형 선택 (3개 카드) -->
+        <section class="space-y-4">
+            <div class="flex items-center gap-2">
+                <span class="text-xs font-black tracking-wider text-brand-accent uppercase">Select Campaign</span>
+                <h4 class="text-lg font-bold text-stone-900 tracking-tight">고료 유형을 선택하세요</h4>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                <!-- 5만원 -->
+                <a href="index-A.html" class="group bg-white border border-stone-200/70 rounded-3xl p-6 shadow-[0_15px_45px_rgba(28,25,23,0.015)] card-premium flex flex-col items-center text-center space-y-3 hover:border-brand-accent">
+                    <span class="text-2xl">🎬</span>
+                    <p class="text-[11px] font-bold text-stone-400 tracking-wider">릴스 20초 이상</p>
+                    <p class="text-2xl font-black text-rose-500">50,000원</p>
+                    <span class="mt-1 w-full bg-stone-100 group-hover:bg-brand-primary group-hover:text-white text-stone-700 text-sm font-bold py-2.5 rounded-xl transition-all duration-200">신청하기</span>
+                </a>
+                <!-- 10만원 -->
+                <a href="index-B.html" class="group bg-white border-2 border-brand-accent rounded-3xl p-6 shadow-[0_15px_45px_rgba(200,122,107,0.08)] card-premium flex flex-col items-center text-center space-y-3 relative">
+                    <span class="absolute -top-2.5 left-1/2 -translate-x-1/2 bg-brand-accent text-white text-[10px] font-black tracking-widest px-2.5 py-0.5 rounded-full uppercase">Popular</span>
+                    <span class="text-2xl">🎬</span>
+                    <p class="text-[11px] font-bold text-stone-400 tracking-wider">릴스 20초 이상</p>
+                    <p class="text-2xl font-black text-rose-500">100,000원</p>
+                    <span class="mt-1 w-full bg-brand-primary group-hover:bg-brand-hover text-white text-sm font-bold py-2.5 rounded-xl transition-all duration-200">신청하기</span>
+                </a>
+                <!-- 20만원 -->
+                <a href="index-C.html" class="group bg-white border border-stone-200/70 rounded-3xl p-6 shadow-[0_15px_45px_rgba(28,25,23,0.015)] card-premium flex flex-col items-center text-center space-y-3 hover:border-brand-accent">
+                    <span class="text-2xl">🎬</span>
+                    <p class="text-[11px] font-bold text-stone-400 tracking-wider">릴스 20초 이상</p>
+                    <p class="text-2xl font-black text-rose-500">200,000원</p>
+                    <span class="mt-1 w-full bg-stone-100 group-hover:bg-brand-primary group-hover:text-white text-stone-700 text-sm font-bold py-2.5 rounded-xl transition-all duration-200">신청하기</span>
+                </a>
+            </div>
+        </section>
+
+        <!-- 푸터 -->
+        <footer class="text-center text-[11px] text-stone-400 pb-4">
+            &copy; 2026 Siriai. Architecture for Insight, AI All rights reserved.
+        </footer>
+    </div>
+
+    <script>
+        (function () {
+            var SITE_PASSWORD = '0907';
+            var STORAGE_KEY = 'siriai_hub_auth';
+            var gate = document.getElementById('password-gate');
+            var form = document.getElementById('password-form');
+            var input = document.getElementById('password-input');
+            var error = document.getElementById('password-error');
+
+            function unlock() {
+                sessionStorage.setItem(STORAGE_KEY, '1');
+                gate.style.display = 'none';
+            }
+
+            if (sessionStorage.getItem(STORAGE_KEY) === '1') {
+                gate.style.display = 'none';
+            } else {
+                document.body.style.overflow = 'hidden';
+                gate.addEventListener('transitionend', function () {}, false);
+            }
+
+            form.addEventListener('submit', function (e) {
+                e.preventDefault();
+                if (input.value === SITE_PASSWORD) {
+                    document.body.style.overflow = '';
+                    unlock();
+                } else {
+                    error.classList.remove('hidden');
+                    input.value = '';
+                    input.focus();
+                }
+            });
+        })();
+    </script>
+</body>
+</html>
