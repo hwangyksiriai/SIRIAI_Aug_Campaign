@@ -50,21 +50,29 @@
 
     <div class="w-full max-w-2xl mx-auto space-y-12">
 
-        <!-- TOP BRANDING ROW -->
-        <div class="flex justify-between items-center border-b border-stone-200 pb-3">
-            <span class="text-xs font-black tracking-widest text-stone-900 uppercase">Siriai</span>
-            <span class="text-xs font-bold text-brand-accent bg-brand-accent/10 px-2.5 py-0.5 rounded-full">모집 중</span>
-        </div>
+        <!-- 배너 -->
+        <div class="relative rounded-3xl overflow-hidden shadow-[0_15px_45px_rgba(28,25,23,0.08)]">
+            <div class="absolute inset-0 bg-cover bg-center" style="background-image:url('images/banner.png');"></div>
+            <div class="absolute inset-0 bg-black/55"></div>
+            <div class="relative z-10 p-6 md:p-10 space-y-8">
 
-        <!-- 헤더 -->
-        <header class="text-left space-y-4">
-            <h1 class="text-4xl md:text-5xl font-black text-stone-950 premium-title leading-[1.15] tracking-tight">
-                시리아이 8월 캠페인<br>일괄 모집
-            </h1>
-            <p class="text-sm md:text-base text-brand-muted font-medium leading-relaxed">
-                시리아이 8월 캠페인 일괄 모집입니다. 아래에서 고료 유형을 선택해 지원서를 작성해 주세요.
-            </p>
-        </header>
+                <!-- TOP BRANDING ROW -->
+                <div class="flex justify-between items-center border-b border-white/25 pb-3">
+                    <span class="text-xs font-black tracking-widest text-white uppercase">Siriai</span>
+                    <span class="text-xs font-bold text-white bg-white/15 px-2.5 py-0.5 rounded-full">모집 중</span>
+                </div>
+
+                <!-- 헤더 -->
+                <header class="text-left space-y-4">
+                    <h1 class="text-4xl md:text-5xl font-black text-white premium-title leading-[1.15] tracking-tight" style="text-shadow: 0 2px 12px rgba(0,0,0,0.35);">
+                        시리아이 8월 캠페인<br>일괄 모집
+                    </h1>
+                    <p class="text-sm md:text-base text-white/90 font-medium leading-relaxed">
+                        시리아이 8월 캠페인 일괄 모집입니다. 아래에서 고료 유형을 선택해 지원서를 작성해 주세요.
+                    </p>
+                </header>
+            </div>
+        </div>
 
         <!-- 무드 갤러리: 브랜드 화보 가로 무한 흐름 마퀴 -->
         <section class="bg-white border border-stone-200/70 rounded-3xl p-5 md:p-6 shadow-[0_15px_45px_rgba(28,25,23,0.015)] card-premium space-y-4 overflow-hidden">
