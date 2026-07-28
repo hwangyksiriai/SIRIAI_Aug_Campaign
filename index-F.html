@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Siriai · SIRIAI 8월 캠페인 모집 (고료 100,000원)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Gowun+Batang:wght@400;700&family=Nanum+Myeongjo:wght@400;700;800&family=Black+Han+Sans&family=Playfair+Display:ital,wght@0,400;0,500;1,400&family=Noto+Serif+KR:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/static/pretendard.min.css">
+<script src="https://t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<style>
+  /* ===== THEME TOKENS ===== editorial 기본. mood 변경하려면 아래 값 교체 ===== */
+  :root {
+    --bg: #F6F3EC;
+    --surface: #FFFFFF;
+    --text: #15120C;
+    --muted: #857F76;
+    --line: #DAD3C6;
+    --accent: #B23A1C;
+    --accent-soft: #F0E7DA;
+    --on-accent: #FBF7F0;
+    --radius: 0px;
+    --head-font: 'Pretendard';
+    --head-weight: 700;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; }
+  body { font-family: 'Pretendard', -apple-system, BlinkMacSystemFont, sans-serif; -webkit-font-smoothing: antialiased; background: var(--bg); color: var(--text); overflow-x: hidden; }
+  ::selection { background: var(--accent); color: #fff; }
+  a { color: inherit; }
+  .head { font-family: var(--head-font), 'Pretendard', sans-serif; font-weight: var(--head-weight); }
+  @keyframes mq-l { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+  @keyframes mq-r { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+  @keyframes rise { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+  .rise { animation: rise .7s ease both; }
+
+  .wrap { max-width: 1180px; margin: 0 auto; padding-left: 28px; padding-right: 28px; }
+  .btn-accent { text-decoration: none; background: var(--accent); color: var(--on-accent); transition: transform .2s, box-shadow .2s, opacity .2s; }
+  .field { width: 100%; padding: 14px 16px; border: 1px solid var(--line); border-radius: var(--radius); background: var(--surface); color: var(--text); font-family: inherit; font-size: 14px; outline: none; transition: border-color .2s, box-shadow .2s; }
+  .field:focus { border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
+  .lbl { display: flex; flex-direction: column; gap: 8px; }
+  .lbl > span { font-size: 13px; font-weight: 600; }
+  .marquee-track:hover { animation-play-state: paused; }
+  .card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -24px rgba(0,0,0,.3); }
+  .fig:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -28px rgba(0,0,0,.4); }
+  .req { color: var(--accent); }
+  @media (max-width: 600px) {
+    .wrap { padding-left: 18px !important; padding-right: 18px !important; }
+    header .wrap { gap: 10px !important; }
+    header .head { font-size: 21px !important; }
+    header a.btn-accent { padding: 8px 13px !important; font-size: 12px !important; }
+    h1.head { font-size: 1.9rem !important; line-height: 1.16 !important; max-width: none !important; }
+    h2.head { font-size: 1.55rem !important; }
+    span.rise { font-size: 11.5px !important; }
+    p.rise { font-size: 14px !important; line-height: 1.65 !important; }
+    main section a[href="#apply"], main section a[href="#guide"] { padding: 13px 20px !important; font-size: 14px !important; }
+    .hero-stats > div { width: 100% !important; padding: 14px 0 0 0 !important; border-left: none !important; border-top: 1px solid var(--line) !important; }
+    .hero-stats > div:first-child { border-top: none !important; padding-top: 0 !important; }
+    .hero-stats .head { font-size: 20px !important; }
+    .card { padding: 24px !important; }
+    .card .head { font-size: 23px !important; }
+    .fig { width: 200px !important; max-width: none !important; }
+    .fig figcaption { padding: 12px 16px !important; }
+    .fig figcaption span:last-child { display: none !important; }
+    #apply { padding-left: 18px !important; padding-right: 18px !important; }
+  }
+  @media (max-width: 400px) {
+    h1.head { font-size: 1.7rem !important; }
+    h2.head { font-size: 1.4rem !important; }
+  }
+
+  /* ===== 요청 조정: hero/라인업 축소 + 혜택카드 가로형(낮게) ===== */
+  .hero-stats .head { font-size: 19px !important; }
+  .hero-stats > div { padding-top: 14px !important; }
+  .card {
+    display: grid !important;
+    grid-template-columns: auto 1fr;
+    align-items: center;
+    align-content: center;
+    column-gap: 15px;
+    padding: 16px 20px !important;
+  }
+  .card > :first-child { grid-column: 1; grid-row: 1 / 4; }
+  .card > :nth-child(2) { margin-top: 0 !important; }
+  .card .head { font-size: 21px !important; margin-top: 2px !important; }
+  .card > :nth-child(4) { margin-top: 3px !important; line-height: 1.45 !important; }
+  @media (max-width: 600px) {
+    .hero-stats .head { font-size: 15px !important; }
+    .hero-stats > div { padding: 10px 0 0 0 !important; }
+    .fig { width: 146px !important; }
+    .fig figcaption { padding: 8px 11px !important; }
+    .fig figcaption .head { font-size: 12.5px !important; }
+    .card { padding: 15px 17px !important; }
+    .card .head { font-size: 19px !important; }
+  }
+
+  /* ===== 캠페인 개요(가이드) 모바일 글씨 축소 ===== */
+  @media (max-width: 600px) {
+    #guide .wrap > div:nth-child(2) > div { padding-top: 14px !important; padding-bottom: 14px !important; }
+    #guide .wrap > div:nth-child(2) > div > span:first-child { font-size: 12.5px !important; }
+    #guide span.head { font-size: 15.5px !important; }
+  }
+</style>
+</head>
+<body>
+
+<header style="position: sticky; top: 0; z-index: 50; background: var(--bg); border-bottom: 1px solid var(--line);">
+  <div class="wrap" style="padding-top: 16px; padding-bottom: 16px; display: flex; align-items: center; justify-content: space-between; gap: 16px;">
+    <div style="display: flex; align-items: baseline; gap: 12px;">
+      <span class="head" style="font-size: 30px; letter-spacing: -0.01em;"><b style="font-weight: 900;">Siriai</b></span>
+    </div>
+    <div style="display: flex; align-items: center; gap: 18px;">
+      <span style="display: inline-flex; align-items: center; gap: 7px; font-size: 13px; color: var(--muted);">
+        <span style="width: 7px; height: 7px; border-radius: 50%; background: var(--accent); box-shadow: 0 0 0 4px var(--accent-soft);"></span>
+        모집 중
+      </span>
+      <a href="#apply" class="btn-accent" style="padding: 9px 20px; border-radius: 999px; font-size: 13px; font-weight: 600;">지원하기</a>
+    </div>
+  </div>
+</header>
+
+<main>
+  <!-- HERO -->
+  <section class="wrap" style="padding-top: clamp(56px,10vw,120px); padding-bottom: clamp(48px,7vw,88px);">
+    <div style="display: flex; flex-direction: column; align-items: flex-start; text-align: left;">
+      <span class="rise" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border: 1px solid var(--line); border-radius: 999px; font-size: 12.5px; letter-spacing: 0.06em; color: var(--muted); background: var(--surface);">✦ SIRIAI 8월 캠페인 모집</span>
+      <h1 class="head rise" style="font-size: clamp(2.3rem,6vw,4.5rem); line-height: 1.08; letter-spacing: -0.025em; margin: 26px 0 0; max-width: 16ch;">SIRIAI 8월<br>캠페인 모집</h1>
+      <p class="rise" style="margin: 26px 0 0; max-width: 52ch; font-size: clamp(15px,1.6vw,18px); line-height: 1.75; color: var(--muted);">브랜드 고유의 텍스처를 나만의 시선으로 표현해 줄 크리에이터를 모집합니다. 아래 라인업과 혜택을 확인한 후, 간편 통합 지원서를 제출하세요.</p>
+      <div class="rise" style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px;">
+        <a href="#apply" class="btn-accent" style="padding: 15px 30px; border-radius: var(--radius); font-size: 15px; font-weight: 600; box-shadow: 0 8px 24px -12px var(--accent);">지원서 작성하기</a>
+        <a href="#guide" style="text-decoration: none; padding: 15px 30px; border-radius: var(--radius); background: transparent; color: var(--text); font-size: 15px; font-weight: 600; border: 1px solid var(--line);">캠페인 개요 보기</a>
+      </div>
+      <div class="rise hero-stats" style="display: flex; flex-wrap: wrap; gap: 0; margin-top: 44px; border-top: 1px solid var(--line);">
+        <div style="padding: 18px 30px 0 0;"><div class="head" style="font-size: 24px;">₩100,000</div><div style="font-size: 12.5px; color: var(--muted); margin-top: 4px; letter-spacing: 0.03em;">건당 고료</div></div>
+        <div style="padding: 18px 30px 0; border-left: 1px solid var(--line);"><div class="head" style="font-size: 24px;">Instagram</div><div style="font-size: 12.5px; color: var(--muted); margin-top: 4px; letter-spacing: 0.03em;">콘텐츠 플랫폼</div></div>
+        <div style="padding: 18px 0 0 30px; border-left: 1px solid var(--line);"><div class="head" style="font-size: 24px;">팔로워 무관</div><div style="font-size: 12.5px; color: var(--muted); margin-top: 4px; letter-spacing: 0.03em;">지원 조건</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- LINEUP -->
+  <section style="padding: clamp(40px,6vw,72px) 0; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); background: var(--surface);">
+    <div class="wrap" style="display: flex; align-items: baseline; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+      <p style="font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin: 0; font-weight: 600;">Brand Lineup</p>
+    </div>
+    <div style="margin-top: 40px; display: flex; flex-direction: column; gap: 22px;">
+      <div style="overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);">
+        <div class="marquee-track" id="mqA" style="display: flex; gap: 22px; width: max-content; animation: mq-l 55s linear infinite;"></div>
+      </div>
+      <div style="overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask-image: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent);">
+        <div class="marquee-track" id="mqB" style="display: flex; gap: 22px; width: max-content; animation: mq-r 62s linear infinite;"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="wrap" style="padding-top: clamp(56px,9vw,110px); padding-bottom: clamp(56px,9vw,110px);">
+    <p style="font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin: 0; font-weight: 600;">About the Campaign</p>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 28px 56px; align-items: end; margin-top: 18px;">
+      <h2 class="head" style="font-size: clamp(1.9rem,4vw,3rem); line-height: 1.18; letter-spacing: -0.025em; margin: 0;">이런 분들과<br>함께하고 싶어요</h2>
+      <p style="font-size: clamp(15px,1.6vw,17px); line-height: 1.75; color: var(--muted); margin: 0;">다양한 스킨케어 파트너 브랜드의 인스타그램 콘텐츠를 제작해 주실 크리에이터를 모집합니다. 팔로워 수보다 브랜드를 해석하는 시선을 봅니다.</p>
+    </div>
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 20px; margin-top: 48px;">
+      <div class="card" style="padding: 32px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface); transition: transform .25s, box-shadow .25s;">
+        <div style="width: 46px; height: 46px; border-radius: 12px; background: var(--accent-soft); display: flex; align-items: center; justify-content: center; color: var(--accent);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="9"></circle><path d="M9 9h4.5a2 2 0 0 1 0 4H9m0 0h6M9 7v10"></path></svg></div>
+        <div style="font-size: 12.5px; color: var(--muted); letter-spacing: 0.04em; margin-top: 22px;">고료</div>
+        <div class="head" style="font-size: 30px; margin-top: 4px;">100,000<span style="font-size: 18px;">원</span></div>
+        <div style="font-size: 13.5px; color: var(--muted); margin-top: 8px; line-height: 1.6;">콘텐츠 1건 기준, 매월 5일 일괄 정산</div>
+      </div>
+      <div class="card" style="padding: 32px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface); transition: transform .25s, box-shadow .25s;">
+        <div style="width: 46px; height: 46px; border-radius: 12px; background: var(--accent-soft); display: flex; align-items: center; justify-content: center; color: var(--accent);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="6" width="18" height="14" rx="3"></rect><circle cx="12" cy="13" r="3.4"></circle><path d="M8 6l1.2-2h5.6L16 6"></path></svg></div>
+        <div style="font-size: 12.5px; color: var(--muted); letter-spacing: 0.04em; margin-top: 22px;">플랫폼</div>
+        <div class="head" style="font-size: 30px; margin-top: 4px;">Instagram</div>
+        <div style="font-size: 13.5px; color: var(--muted); margin-top: 8px; line-height: 1.6;">릴스 20초 이상 · 업로드 유지 3개월</div>
+      </div>
+      <div class="card" style="padding: 32px; border-radius: var(--radius); border: 1px solid var(--line); background: var(--surface); transition: transform .25s, box-shadow .25s;">
+        <div style="width: 46px; height: 46px; border-radius: 12px; background: var(--accent-soft); display: flex; align-items: center; justify-content: center; color: var(--accent);"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M5 12.5l4.5 4.5L19 7"></path></svg></div>
+        <div style="font-size: 12.5px; color: var(--muted); letter-spacing: 0.04em; margin-top: 22px;">조건</div>
+        <div class="head" style="font-size: 30px; margin-top: 4px;">팔로워 무관</div>
+        <div style="font-size: 13.5px; color: var(--muted); margin-top: 8px; line-height: 1.6;">콘텐츠 해석력 중심으로 선정</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- GUIDE -->
+  <section id="guide" style="background: var(--surface); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line);">
+    <div class="wrap" style="padding-top: clamp(56px,9vw,110px); padding-bottom: clamp(56px,9vw,110px); display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 48px;">
+      <div>
+        <p style="font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin: 0; font-weight: 600;">Campaign Guide</p>
+        <h2 class="head" style="font-size: clamp(1.9rem,4vw,3rem); letter-spacing: -0.025em; margin: 16px 0 0;">캠페인 개요</h2>
+        <p style="font-size: 15px; line-height: 1.75; color: var(--muted); margin: 20px 0 0; max-width: 34ch;">아래 미션 조건을 충분히 확인한 뒤 지원해 주세요. 모든 항목은 선정 후 필수로 적용됩니다.</p>
+      </div>
+      <div>
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 22px 4px; border-bottom: 1px solid var(--line);"><span style="font-size: 14px; color: var(--muted); letter-spacing: 0.02em;">콘텐츠 형식</span><span class="head" style="font-size: 19px;">릴스 (20초 이상)</span></div>
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 22px 4px; border-bottom: 1px solid var(--line);"><span style="font-size: 14px; color: var(--muted); letter-spacing: 0.02em;">공동작업자</span><span class="head" style="font-size: 19px;">필수</span></div>
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 22px 4px; border-bottom: 1px solid var(--line);"><span style="font-size: 14px; color: var(--muted); letter-spacing: 0.02em;">2차 활용</span><span class="head" style="font-size: 19px;">필수</span></div>
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 22px 4px; border-bottom: 1px solid var(--line);"><span style="font-size: 14px; color: var(--muted); letter-spacing: 0.02em;">업로드 유지기한</span><span class="head" style="font-size: 19px;">3개월</span></div>
+        <div style="display: flex; align-items: center; justify-content: space-between; padding: 22px 4px; gap: 12px;"><span style="font-size: 14px; color: var(--muted); letter-spacing: 0.02em;">촬영·업로드 일정</span><span class="head" style="font-size: 15px; text-align: right;">선정 후 개별 안내</span></div>
+        <p style="margin: 4px 4px 0; font-size: 12.5px; line-height: 1.6; word-break: keep-all; color: var(--muted);">세부 가이드라인과 촬영·업로드 일정은 크리에이터 선정 후 개별 안내드리며, 일정은 1주 이내에서 유연하게 조정 가능합니다.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- APPLY -->
+  <section id="apply" style="max-width: 760px; margin: 0 auto; padding: clamp(56px,9vw,110px) 28px;">
+    <div style="text-align: center;">
+      <p style="font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin: 0; font-weight: 600;">Application</p>
+      <h2 class="head" style="font-size: clamp(2rem,4.5vw,3rem); letter-spacing: -0.025em; margin: 14px 0 0;">8월 통합 지원서</h2>
+      <p style="font-size: 14px; color: var(--muted); margin: 14px 0 0;"><span class="req">*</span> 표시는 필수 입력 항목입니다.</p>
+    </div>
+
+    <form id="applyForm" style="margin-top: 44px; display: flex; flex-direction: column; gap: 30px;">
+      <!-- option -->
+      <div>
+        <div style="font-size: 13px; font-weight: 600; margin-bottom: 12px;">지원 옵션 선택 <span class="req">*</span></div>
+        <div style="position: relative; display: grid; grid-template-columns: 1fr 1fr; padding: 5px; background: var(--surface); border: 1px solid var(--line); border-radius: 999px;">
+          <div id="optIndicator" style="position: absolute; top: 5px; bottom: 5px; left: 5px; width: calc(50% - 5px); border-radius: 999px; background: var(--accent); z-index: 0; transform: translateX(0); transition: transform .3s cubic-bezier(.4,0,.2,1);"></div>
+          <button type="button" data-opt="all" style="position: relative; z-index: 1; padding: 12px; border: none; background: transparent; cursor: pointer; font-family: inherit; font-size: 14px; font-weight: 600; color: var(--on-accent); transition: color .25s;">전체 지원하기</button>
+          <button type="button" data-opt="individual" style="position: relative; z-index: 1; padding: 12px; border: none; background: transparent; cursor: pointer; font-family: inherit; font-size: 14px; font-weight: 600; color: var(--muted); transition: color .25s;">개별 지원하기</button>
+        </div>
+      </div>
+
+      <!-- 전체/개별 지원 공통 고지: Quadthera 고료 관련 안내 -->
+      <div style="display: flex; gap: 14px; padding: 18px 20px; border-radius: var(--radius); background: var(--accent-soft); border: 1px solid var(--accent);">
+        <span style="font-size: 18px; line-height: 1.4;">⚠️</span>
+        <p style="margin: 0; font-size: 13px; line-height: 1.7; letter-spacing: -0.01em; word-break: keep-all; overflow-wrap: break-word; color: var(--text);"><b>Quadthera(올영방문형)</b>는 기기가 증정되는 캠페인으로 별도 고료 지급이 어렵습니다.<br>전체 지원 시에도 동일하게 적용되니 참고 후 지원해 주세요.</p>
+      </div>
+
+      <!-- brand select (individual) -->
+      <div id="brandSelect" style="display: none;">
+        <div style="font-size: 13px; font-weight: 600; margin-bottom: 4px;">매칭 대상 브랜드 <span class="req">*</span></div>
+        <div style="font-size: 12.5px; color: var(--muted); margin-bottom: 14px;">수동 지정해 주세요 · 중복 선택 가능 <span class="req" id="selCount"></span></div>
+        <div id="brandGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px;"></div>
+      </div>
+
+      <!-- fields -->
+      <div style="display: grid; grid-template-columns: 1fr; gap: 18px;">
+        <label class="lbl"><span>이름 <span class="req">*</span></span><input class="field" name="name" placeholder="홍길동" required></label>
+        <label class="lbl"><span>인스타그램 링크 <span class="req">*</span></span><input class="field" name="instagram" placeholder="instagram.com/@username" required></label>
+        <label class="lbl"><span>휴대폰 <span class="req">*</span></span><input class="field" name="phone" placeholder="010-0000-0000" required></label>
+        <label class="lbl"><span>이메일 <span style="color: var(--muted); font-weight: 400;">(선택)</span></span><input class="field" name="email" placeholder="name@email.com"></label>
+      </div>
+
+      <!-- address -->
+      <div style="display: flex; flex-direction: column; gap: 18px;">
+        <label class="lbl"><span>우편번호 <span class="req">*</span></span>
+          <div style="display: flex; gap: 10px;">
+            <input class="field" name="zip" placeholder="00000" style="flex: 1;" required>
+            <button type="button" style="flex: none; padding: 0 22px; border: 1px solid var(--text); border-radius: var(--radius); background: var(--text); color: var(--bg); font-family: inherit; font-size: 13.5px; font-weight: 600; cursor: pointer; white-space: nowrap;" id="zipSearchBtn">주소 검색</button>
+          </div>
+        </label>
+        <label class="lbl"><span>배송지 주소 <span class="req">*</span></span><input class="field" name="address" placeholder="도로명 주소" required></label>
+        <label class="lbl"><span>상세 주소 <span class="req">*</span></span><input class="field" name="addressDetail" placeholder="동·호수 등" required></label>
+        <label class="lbl"><span>요청사항 <span style="color: var(--muted); font-weight: 400;">(선택)</span></span><textarea class="field" name="memo" rows="3" placeholder="배송 관련 요청사항을 적어주세요" style="resize: vertical;"></textarea></label>
+      </div>
+
+      <!-- warning -->
+      <div style="display: flex; gap: 14px; padding: 18px 20px; border-radius: var(--radius); background: var(--accent-soft); border: 1px solid var(--accent);">
+        <span style="font-size: 18px; line-height: 1.4;">⚠️</span>
+        <p style="margin: 0; font-size: 13px; line-height: 1.65; color: var(--text);">배송지는 매 캠페인마다 새로 확인합니다. 오배송 방지를 위해 입력값을 다시 한번 체크해 주세요.</p>
+      </div>
+
+      <!-- notice -->
+      <div style="padding: 22px; border-radius: var(--radius); border: 1px dashed var(--line);">
+        <div style="font-size: 13px; font-weight: 600; margin-bottom: 12px;">📌 업로드 · 정산 안내</div>
+        <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13px; line-height: 1.6; color: var(--muted);">
+          <div style="display: flex; gap: 8px;"><span class="req">·</span>안내된 업로드 마감일까지 업로드 시 정산이 진행됩니다.</div>
+          <div style="display: flex; gap: 8px;"><span class="req">·</span>정산은 매월 5일 일괄 지급됩니다.</div>
+          <div style="display: flex; gap: 8px; word-break: keep-all;"><span class="req">·</span>세부 가이드라인과 촬영·업로드 일정은 선정 후 개별 안내드리며, 1주 이내에서 유연하게 조정 가능합니다.</div>
+        </div>
+      </div>
+
+      <!-- agreement -->
+      <div id="agreeRow" style="display: flex; gap: 14px; align-items: flex-start; cursor: pointer; user-select: none;">
+        <div style="flex: none; margin-top: 1px; width: 22px; height: 22px; border-radius: 6px; border: 1px solid var(--line); background: var(--surface); display: flex; align-items: center; justify-content: center; position: relative;">
+          <div id="agreeMark" style="position: absolute; inset: -1px; border-radius: 6px; background: var(--accent); display: none; align-items: center; justify-content: center;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7"></path></svg></div>
+        </div>
+        <span style="font-size: 13px; line-height: 1.55; color: var(--text);">안내된 캠페인별 가이드라인 및 고료 조건을 확인했으며 이에 동의합니다.<br>제작된 콘텐츠는 브랜드 및 SIRIAI의 2차 활용에 동의합니다. <span class="req">(필수)</span><br><span style="display: inline-block; margin-top: 8px; font-size: 12px; line-height: 1.55; color: var(--muted);">진행 제품은 브랜드 프로모션 상황에 따라 일부 변경될 수 있습니다.</span></span>
+      </div>
+
+      <button type="submit" class="head btn-accent" style="margin-top: 6px; padding: 18px; border: none; border-radius: var(--radius); font-size: 16px; letter-spacing: 0.01em; cursor: pointer; box-shadow: 0 10px 30px -14px var(--accent);">SIRIAI 8월 캠페인 통합 지원서 제출하기</button>
+    </form>
+  </section>
+</main>
+
+<footer style="border-top: 1px solid var(--line); background: var(--surface);">
+  <div class="wrap" style="padding-top: 40px; padding-bottom: 40px; display: flex; align-items: center; justify-content: space-between; gap: 16px; flex-wrap: wrap;">
+    <div style="display: flex; align-items: baseline; gap: 12px;">
+      <span class="head" style="font-size: 18px;">Siriai</span>
+      <span style="font-size: 12px; color: var(--muted);">Architecture for Insight</span>
+    </div>
+    <span style="font-size: 12px; color: var(--muted);">© 2026 Siriai. All rights reserved.</span>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var IMG = 'https://raw.githubusercontent.com/hwangyksiriai/siriai_skincare/main/images/';
+  var SHEET_ENDPOINT = 'https://script.google.com/macros/s/AKfycbwNpcZCYAjNp2fl0Ddvaasi8zgMpRtyHmEG1emqyGoB4lHYvGAfal6d2jSIZXoTO7mT3g/exec';
+  var CAMPAIGN_AMOUNT = '100,000원';
+  var lineup = [
+    { name: 'COSRX', file: 'cosrx.png' },
+    { name: 'Pretty Actually', file: 'pretty-actually.png' },
+    { name: 'if:fu', file: 'itfu.png' },
+    { name: 'LUSOM', file: 'lusom.png' },
+    { name: 'OOTD beauty', file: 'ootd beauty.png' },
+    { name: 'SKINSIGNAL', file: 'skinsignal.png' },
+    { name: 'YADAH', file: 'yadah.png' },
+    { name: 'NURICLE', file: '뉴리클.png' },
+    { name: 'MUSINSA STANDARD BEAUTY', file: '무신사스탠다드뷰티.png' },
+    { name: 'BYNEWCELL', file: '바이뉴셀.png' },
+    { name: 'INNISFREE', file: '이니스프리.png' },
+    { name: 'QUADTHERA', file: '쿼드쎄라.png' },
+    { name: '29 Apostrophe', file: '29 Apostrophe.png', local: true },
+    { name: 'KEEPINTOUCH', file: 'KEEPINTOUCH.png', local: true },
+    { name: 'No the Love', file: 'No the Love.png', local: true },
+    { name: 'ODDTYPE', file: 'ODDTYPE.png', local: true },
+    { name: 'OFFLOW', file: 'OFFLOW.png', local: true },
+    { name: 'ohayoh', file: 'ohayoh.png', local: true }
+  ];
+  function figure(b) {
+    var src = b.local ? ('images/' + encodeURIComponent(b.file)) : (IMG + encodeURIComponent(b.file));
+    return '<figure class="fig" style="flex:none;width:280px;margin:0;border-radius:calc(var(--radius) + 6px);overflow:hidden;border:1px solid var(--line);background:var(--bg);transition:transform .3s, box-shadow .3s;">' +
+      '<div style="aspect-ratio:3/4;background:#fff;overflow:hidden;border-bottom:1px solid var(--line);"><img src="' + src + '" alt="' + b.name + '" loading="lazy" style="width:100%;height:100%;object-fit:cover;display:block;"></div>' +
+      '<figcaption style="padding:18px 20px;display:flex;align-items:center;justify-content:space-between;gap:8px;"><span class="head" style="font-size:' + (b.name.length > 20 ? 12 : b.name.length > 14 ? 15 : 20) + 'px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0;">' + b.name + '</span><span style="flex:none;font-size:10px;letter-spacing:0.08em;text-transform:uppercase;color:var(--muted);">Partner</span></figcaption>' +
+      '</figure>';
+  }
+  var aHtml = lineup.concat(lineup).map(figure).join('');
+  var bRev = lineup.slice().reverse(); var bHtml = bRev.concat(bRev).map(figure).join('');
+  document.getElementById('mqA').innerHTML = aHtml;
+  document.getElementById('mqB').innerHTML = bHtml;
+
+  // option toggle
+  var supportType = 'all';
+  var indicator = document.getElementById('optIndicator');
+  var brandSelect = document.getElementById('brandSelect');
+  var optBtns = document.querySelectorAll('[data-opt]');
+  optBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      supportType = btn.getAttribute('data-opt');
+      indicator.style.transform = supportType === 'individual' ? 'translateX(100%)' : 'translateX(0)';
+      optBtns.forEach(function (x) {
+        x.style.color = x.getAttribute('data-opt') === supportType ? 'var(--on-accent)' : 'var(--muted)';
+      });
+      brandSelect.style.display = supportType === 'individual' ? 'block' : 'none';
+    });
+  });
+
+  // brand cards
+  var formBrands = [
+    { name: 'Veryhour', links: [
+        { label: '인스타그램 →', url: 'https://www.instagram.com/veryhour.official/' },
+        { label: '제공제품 보기 →', url: 'https://naaamyuuu.com/product/%EB%B2%A0%EB%A6%AC%EC%95%84%EC%9B%8C-%EC%97%90%EC%9D%B4%ED%81%B4%EB%A6%B0-%EC%95%B0%ED%94%8C/1177/category/40/display/1/' }
+      ] },
+    { name: 'NURICLE', links: [
+        { label: '인스타그램 →', url: 'https://www.instagram.com/nuricle_kr/' },
+        { label: '제공제품 보기 (스킨케어 신제품) →', url: 'https://www.nuricle.kr/shop' }
+      ] },
+    { name: 'Quadthera(올영방문형)', links: [
+        { label: '인스타그램 →', url: 'https://www.instagram.com/quadthera.official/' },
+        { label: '가이드라인 보기 →', url: 'https://quadthera-teenz-guide.vercel.app/olive-young/index.html' }
+      ] }
+  ];
+  var selected = [];
+  var grid = document.getElementById('brandGrid');
+  var selCount = document.getElementById('selCount');
+  function renderBrands() {
+    grid.innerHTML = formBrands.map(function (fb, i) {
+      var on = selected.indexOf(fb.name) > -1;
+      return '<div data-i="' + i + '" style="position:relative;cursor:pointer;padding:20px;border-radius:var(--radius);border:1px solid var(--line);background:var(--surface);transition:border-color .2s;">' +
+        (on ? '<div style="position:absolute;inset:0;border:2px solid var(--accent);border-radius:var(--radius);pointer-events:none;"></div><div style="position:absolute;top:12px;right:12px;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7"></path></svg></div>' : '') +
+        '<div class="head" style="font-size:20px;">' + fb.name + '</div>' +
+        (fb.note ? '<div style="margin-top:10px;padding:9px 11px;border-radius:8px;background:var(--accent-soft);border:1px solid var(--accent);font-size:11.5px;line-height:1.5;color:var(--text);font-weight:600;">' + fb.note + '</div>' : '') +
+        (fb.links
+          ? fb.links.map(function (l) { return '<a href="' + l.url + '" target="_blank" rel="noopener" data-link="1" style="display:block;margin-top:10px;font-size:12.5px;color:var(--muted);text-decoration:none;"><span style="border-bottom:1px solid var(--line);">' + l.label + '</span></a>'; }).join('')
+          : fb.link
+            ? '<a href="' + fb.link + '" target="_blank" rel="noopener" data-link="1" style="display:inline-block;margin-top:10px;font-size:12.5px;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line);">상세보기 →</a>'
+            : '') +
+        '</div>';
+    }).join('');
+    selCount.textContent = selected.length > 0 ? '· ' + selected.length + '개 선택됨' : '';
+  }
+  grid.addEventListener('click', function (e) {
+    if (e.target.closest('[data-link]')) { e.stopPropagation(); return; }
+    var card = e.target.closest('[data-i]');
+    if (!card) return;
+    var name = formBrands[+card.getAttribute('data-i')].name;
+    var idx = selected.indexOf(name);
+    if (idx > -1) selected.splice(idx, 1); else selected.push(name);
+    renderBrands();
+  });
+  renderBrands();
+
+  // agreement
+  var agreed = false;
+  var agreeRow = document.getElementById('agreeRow');
+  var agreeMark = document.getElementById('agreeMark');
+  agreeRow.addEventListener('click', function () {
+    agreed = !agreed;
+    agreeMark.style.display = agreed ? 'flex' : 'none';
+  });
+
+  var form = document.getElementById('applyForm');
+  function val(n) { var el = form.querySelector('[name="' + n + '"]'); return el ? (el.value || '').trim() : ''; }
+
+  // 휴대폰 자동 포맷
+  var phoneEl = form.querySelector('[name="phone"]');
+  if (phoneEl) {
+    phoneEl.addEventListener('input', function () {
+      var v = this.value.replace(/[^0-9]/g, '').slice(0, 11);
+      if (v.length < 4) this.value = v;
+      else if (v.length < 8) this.value = v.slice(0, 3) + '-' + v.slice(3);
+      else this.value = v.slice(0, 3) + '-' + v.slice(3, 7) + '-' + v.slice(7);
+    });
+  }
+
+  // 카카오 주소검색 (페이지 내 모달 embed)
+  var zipBtn = document.getElementById('zipSearchBtn');
+  if (zipBtn) {
+    zipBtn.addEventListener('click', function () {
+      var overlay = document.createElement('div');
+      overlay.style.cssText = 'position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;padding:16px;';
+      var box = document.createElement('div');
+      box.style.cssText = 'background:#fff;width:100%;max-width:450px;border-radius:8px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.3);';
+      var bar = document.createElement('div');
+      bar.style.cssText = 'display:flex;justify-content:space-between;align-items:center;padding:12px 16px;border-bottom:1px solid #eee;font-size:14px;font-weight:600;';
+      bar.innerHTML = '<span>배송지 검색</span>';
+      var closeBtn = document.createElement('button');
+      closeBtn.type = 'button'; closeBtn.textContent = '✕';
+      closeBtn.style.cssText = 'border:none;background:none;font-size:16px;cursor:pointer;color:#888;';
+      bar.appendChild(closeBtn);
+      var embed = document.createElement('div');
+      embed.style.cssText = 'width:100%;height:480px;';
+      box.appendChild(bar); box.appendChild(embed); overlay.appendChild(box);
+      document.body.appendChild(overlay);
+      function remove() { if (overlay.parentNode) overlay.parentNode.removeChild(overlay); }
+      closeBtn.addEventListener('click', remove);
+      overlay.addEventListener('click', function (e) { if (e.target === overlay) remove(); });
+      new daum.Postcode({
+        oncomplete: function (data) {
+          var full = data.roadAddress || data.jibunAddress;
+          var zipEl = form.querySelector('[name="zip"]');
+          var addrEl = form.querySelector('[name="address"]');
+          if (zipEl) zipEl.value = data.zonecode;
+          if (addrEl) addrEl.value = full;
+          remove();
+          var d = form.querySelector('[name="addressDetail"]');
+          if (d) d.focus();
+        },
+        width: '100%', height: '100%'
+      }).embed(embed);
+    });
+  }
+
+  // submit → 구글 시트 전송
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    if (supportType === 'individual' && selected.length === 0) { alert('개별 지원 시 최소 한 개 이상의 브랜드를 선택해 주세요.'); return; }
+    if (!agreed) { alert('필수 동의 항목에 체크해 주세요.'); return; }
+
+    var payload = {
+      amount: CAMPAIGN_AMOUNT,
+      support_type: supportType === 'all' ? '전체 지원' : '개별 지원',
+      brands: supportType === 'all' ? '전체' : selected.join(', '),
+      name: val('name'),
+      instagram: val('instagram'),
+      phone: val('phone'),
+      email: val('email'),
+      zonecode: val('zip'),
+      address: val('address'),
+      address_detail: val('addressDetail'),
+      notes: val('memo'),
+      agree: '동의'
+    };
+    if (SHEET_ENDPOINT && SHEET_ENDPOINT.indexOf('PASTE_') !== 0) {
+      fetch(SHEET_ENDPOINT, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) }).catch(function (err) { console.error('시트 전송 실패:', err); });
+    }
+    alert('지원서가 제출되었습니다.');
+    form.reset();
+    selected = []; renderBrands();
+    agreed = false; agreeMark.style.display = 'none';
+    supportType = 'all';
+    indicator.style.transform = 'translateX(0)';
+    optBtns.forEach(function (x) { x.style.color = x.getAttribute('data-opt') === 'all' ? 'var(--on-accent)' : 'var(--muted)'; });
+    brandSelect.style.display = 'none';
+  });
+})();
+</script>
+</body>
+</html>
