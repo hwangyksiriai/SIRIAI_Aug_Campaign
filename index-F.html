@@ -125,20 +125,24 @@
 
 <main>
   <!-- HERO -->
-  <section class="wrap" style="padding-top: clamp(56px,10vw,120px); padding-bottom: clamp(48px,7vw,88px);">
+  <section style="position: relative; overflow: hidden;">
+    <div style="position: absolute; inset: 0; background-image: url('images/banner.png'); background-size: cover; background-position: center;"></div>
+    <div style="position: absolute; inset: 0; background: rgba(0,0,0,0.55);"></div>
+    <div class="wrap" style="position: relative; z-index: 1; padding-top: clamp(56px,10vw,120px); padding-bottom: clamp(48px,7vw,88px);">
     <div style="display: flex; flex-direction: column; align-items: flex-start; text-align: left;">
-      <span class="rise" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border: 1px solid var(--line); border-radius: 999px; font-size: 12.5px; letter-spacing: 0.06em; color: var(--muted); background: var(--surface);">✦ SIRIAI 8월 캠페인 모집</span>
-      <h1 class="head rise" style="font-size: clamp(2.3rem,6vw,4.5rem); line-height: 1.08; letter-spacing: -0.025em; margin: 26px 0 0; max-width: 16ch;">SIRIAI 8월<br>캠페인 모집</h1>
-      <p class="rise" style="margin: 26px 0 0; max-width: 52ch; font-size: clamp(15px,1.6vw,18px); line-height: 1.75; color: var(--muted);">브랜드 고유의 텍스처를 나만의 시선으로 표현해 줄 크리에이터를 모집합니다. 아래 라인업과 혜택을 확인한 후, 간편 통합 지원서를 제출하세요.</p>
+      <span class="rise" style="display: inline-flex; align-items: center; gap: 8px; padding: 8px 16px; border: 1px solid rgba(255,255,255,0.35); border-radius: 999px; font-size: 12.5px; letter-spacing: 0.06em; color: #fff; background: rgba(255,255,255,0.1);">✦ SIRIAI 8월 캠페인 모집</span>
+      <h1 class="head rise" style="font-size: clamp(2.3rem,6vw,4.5rem); line-height: 1.08; letter-spacing: -0.025em; margin: 26px 0 0; max-width: 16ch; color: #fff; text-shadow: 0 2px 12px rgba(0,0,0,0.35);">SIRIAI 8월<br>캠페인 모집</h1>
+      <p class="rise" style="margin: 26px 0 0; max-width: 52ch; font-size: clamp(15px,1.6vw,18px); line-height: 1.75; color: rgba(255,255,255,0.88);">브랜드 고유의 텍스처를 나만의 시선으로 표현해 줄 크리에이터를 모집합니다. 아래 라인업과 혜택을 확인한 후, 간편 통합 지원서를 제출하세요.</p>
       <div class="rise" style="display: flex; flex-wrap: wrap; gap: 14px; margin-top: 36px;">
         <a href="#apply" class="btn-accent" style="padding: 15px 30px; border-radius: var(--radius); font-size: 15px; font-weight: 600; box-shadow: 0 8px 24px -12px var(--accent);">지원서 작성하기</a>
-        <a href="#guide" style="text-decoration: none; padding: 15px 30px; border-radius: var(--radius); background: transparent; color: var(--text); font-size: 15px; font-weight: 600; border: 1px solid var(--line);">캠페인 개요 보기</a>
+        <a href="#guide" style="text-decoration: none; padding: 15px 30px; border-radius: var(--radius); background: rgba(255,255,255,0.08); color: #fff; font-size: 15px; font-weight: 600; border: 1px solid rgba(255,255,255,0.35);">캠페인 개요 보기</a>
       </div>
-      <div class="rise hero-stats" style="display: flex; flex-wrap: wrap; gap: 0; margin-top: 44px; border-top: 1px solid var(--line);">
-        <div style="padding: 18px 30px 0 0;"><div class="head" style="font-size: 24px;">₩100,000</div><div style="font-size: 12.5px; color: var(--muted); margin-top: 4px; letter-spacing: 0.03em;">건당 고료</div></div>
-        <div style="padding: 18px 30px 0; border-left: 1px solid var(--line);"><div class="head" style="font-size: 24px;">Instagram</div><div style="font-size: 12.5px; color: var(--muted); margin-top: 4px; letter-spacing: 0.03em;">콘텐츠 플랫폼</div></div>
-        <div style="padding: 18px 0 0 30px; border-left: 1px solid var(--line);"><div class="head" style="font-size: 24px;">팔로워 무관</div><div style="font-size: 12.5px; color: var(--muted); margin-top: 4px; letter-spacing: 0.03em;">지원 조건</div></div>
+      <div class="rise hero-stats" style="display: flex; flex-wrap: wrap; gap: 0; margin-top: 44px; border-top: 1px solid rgba(255,255,255,0.25);">
+        <div style="padding: 18px 30px 0 0;"><div class="head" style="font-size: 24px; color: #fff;">₩100,000</div><div style="font-size: 12.5px; color: rgba(255,255,255,0.75); margin-top: 4px; letter-spacing: 0.03em;">건당 고료</div></div>
+        <div style="padding: 18px 30px 0; border-left: 1px solid rgba(255,255,255,0.25);"><div class="head" style="font-size: 24px; color: #fff;">Instagram</div><div style="font-size: 12.5px; color: rgba(255,255,255,0.75); margin-top: 4px; letter-spacing: 0.03em;">콘텐츠 플랫폼</div></div>
+        <div style="padding: 18px 0 0 30px; border-left: 1px solid rgba(255,255,255,0.25);"><div class="head" style="font-size: 24px; color: #fff;">팔로워 무관</div><div style="font-size: 12.5px; color: rgba(255,255,255,0.75); margin-top: 4px; letter-spacing: 0.03em;">지원 조건</div></div>
       </div>
+    </div>
     </div>
   </section>
 
@@ -203,6 +207,14 @@
         <p style="margin: 4px 4px 0; font-size: 12.5px; line-height: 1.6; word-break: keep-all; color: var(--muted);">세부 가이드라인과 촬영·업로드 일정은 크리에이터 선정 후 개별 안내드리며, 일정은 1주 이내에서 유연하게 조정 가능합니다.</p>
       </div>
     </div>
+  </section>
+
+  <!-- BRAND INFO: 개별 지원 전 브랜드 확인 -->
+  <section class="wrap" style="padding-top: clamp(40px,6vw,72px); padding-bottom: clamp(40px,6vw,72px);">
+    <p style="font-size: 12px; letter-spacing: 0.18em; text-transform: uppercase; color: var(--accent); margin: 0; font-weight: 600;">Brand Guide</p>
+    <h2 class="head" style="font-size: clamp(1.6rem,3.2vw,2.2rem); letter-spacing: -0.025em; margin: 10px 0 0;">참여 브랜드 안내</h2>
+    <p style="font-size: 14px; line-height: 1.7; color: var(--muted); margin: 10px 0 0; word-break: keep-all;">개별 지원 전에 아래에서 브랜드별 인스타그램·제공제품·가이드라인을 미리 확인해 주세요.</p>
+    <div id="brandInfoGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; margin-top: 28px;"></div>
   </section>
 
   <!-- APPLY -->
@@ -362,21 +374,14 @@
   function renderBrands() {
     grid.innerHTML = formBrands.map(function (fb, i) {
       var on = selected.indexOf(fb.name) > -1;
-      return '<div data-i="' + i + '" style="position:relative;cursor:pointer;padding:20px;border-radius:var(--radius);border:1px solid var(--line);background:var(--surface);transition:border-color .2s;">' +
-        (on ? '<div style="position:absolute;inset:0;border:2px solid var(--accent);border-radius:var(--radius);pointer-events:none;"></div><div style="position:absolute;top:12px;right:12px;width:22px;height:22px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7"></path></svg></div>' : '') +
-        '<div class="head" style="font-size:20px;">' + fb.name + '</div>' +
-        (fb.note ? '<div style="margin-top:10px;padding:9px 11px;border-radius:8px;background:var(--accent-soft);border:1px solid var(--accent);font-size:11.5px;line-height:1.5;color:var(--text);font-weight:600;">' + fb.note + '</div>' : '') +
-        (fb.links
-          ? fb.links.map(function (l) { return '<a href="' + l.url + '" target="_blank" rel="noopener" data-link="1" style="display:block;margin-top:10px;font-size:12.5px;color:var(--muted);text-decoration:none;"><span style="border-bottom:1px solid var(--line);">' + l.label + '</span></a>'; }).join('')
-          : fb.link
-            ? '<a href="' + fb.link + '" target="_blank" rel="noopener" data-link="1" style="display:inline-block;margin-top:10px;font-size:12.5px;color:var(--muted);text-decoration:none;border-bottom:1px solid var(--line);">상세보기 →</a>'
-            : '') +
+      return '<div data-i="' + i + '" style="position:relative;cursor:pointer;padding:20px;border-radius:var(--radius);border:1px solid var(--line);background:var(--surface);transition:border-color .2s;display:flex;align-items:center;justify-content:center;text-align:center;min-height:64px;">' +
+        (on ? '<div style="position:absolute;inset:0;border:2px solid var(--accent);border-radius:var(--radius);pointer-events:none;"></div><div style="position:absolute;top:10px;right:10px;width:20px;height:20px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7"></path></svg></div>' : '') +
+        '<div class="head" style="font-size:18px;">' + fb.name + '</div>' +
         '</div>';
     }).join('');
     selCount.textContent = selected.length > 0 ? '· ' + selected.length + '개 선택됨' : '';
   }
   grid.addEventListener('click', function (e) {
-    if (e.target.closest('[data-link]')) { e.stopPropagation(); return; }
     var card = e.target.closest('[data-i]');
     if (!card) return;
     var name = formBrands[+card.getAttribute('data-i')].name;
@@ -385,6 +390,19 @@
     renderBrands();
   });
   renderBrands();
+
+  // 브랜드 소개 (캠페인 개요 아래, 지원 전 참고용)
+  var brandInfoGrid = document.getElementById('brandInfoGrid');
+  if (brandInfoGrid) {
+    brandInfoGrid.innerHTML = formBrands.map(function (fb) {
+      return '<div style="padding:20px;border-radius:var(--radius);border:1px solid var(--line);background:var(--surface);">' +
+        '<div class="head" style="font-size:18px;">' + fb.name + '</div>' +
+        (fb.links
+          ? fb.links.map(function (l) { return '<a href="' + l.url + '" target="_blank" rel="noopener" style="display:block;margin-top:8px;font-size:12.5px;color:var(--muted);text-decoration:none;"><span style="border-bottom:1px solid var(--line);">' + l.label + '</span></a>'; }).join('')
+          : '') +
+        '</div>';
+    }).join('');
+  }
 
   // agreement
   var agreed = false;
@@ -447,32 +465,9 @@
     });
   }
 
-  // submit → 구글 시트 전송
-  form.addEventListener('submit', function (e) {
-    e.preventDefault();
-    if (!form.checkValidity()) { form.reportValidity(); return; }
-    if (supportType === 'individual' && selected.length === 0) { alert('개별 지원 시 최소 한 개 이상의 브랜드를 선택해 주세요.'); return; }
-    if (!agreed) { alert('필수 동의 항목에 체크해 주세요.'); return; }
+  function sleep(ms) { return new Promise(function (r) { setTimeout(r, ms); }); }
 
-    var payload = {
-      division: DIVISION,
-      amount: CAMPAIGN_AMOUNT,
-      support_type: supportType === 'all' ? '전체 지원' : '개별 지원',
-      brands: supportType === 'all' ? '전체' : selected.join(', '),
-      name: val('name'),
-      instagram: val('instagram'),
-      phone: val('phone'),
-      email: val('email'),
-      zonecode: val('zip'),
-      address: val('address'),
-      address_detail: val('addressDetail'),
-      notes: val('memo'),
-      agree: '동의'
-    };
-    if (SHEET_ENDPOINT && SHEET_ENDPOINT.indexOf('PASTE_') !== 0) {
-      fetch(SHEET_ENDPOINT, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) }).catch(function (err) { console.error('시트 전송 실패:', err); });
-    }
-    alert('지원서가 제출되었습니다.');
+  function resetForm() {
     form.reset();
     selected = []; renderBrands();
     agreed = false; agreeMark.style.display = 'none';
@@ -480,6 +475,50 @@
     indicator.style.transform = 'translateX(0)';
     optBtns.forEach(function (x) { x.style.color = x.getAttribute('data-opt') === 'all' ? 'var(--on-accent)' : 'var(--muted)'; });
     brandSelect.style.display = 'none';
+  }
+
+  // submit → 구글 시트 전송 (전체 지원 = 1행 '전체', 개별 지원 = 선택 브랜드마다 1행씩)
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!form.checkValidity()) { form.reportValidity(); return; }
+    if (supportType === 'individual' && selected.length === 0) { alert('개별 지원 시 최소 한 개 이상의 브랜드를 선택해 주세요.'); return; }
+    if (!agreed) { alert('필수 동의 항목에 체크해 주세요.'); return; }
+
+    var addressFull = (val('address') + ' ' + val('addressDetail')).trim();
+    var baseCommon = {
+      division: DIVISION,
+      amount: CAMPAIGN_AMOUNT,
+      support_type: supportType === 'all' ? '전체 지원' : '개별 지원',
+      name: val('name'),
+      instagram: val('instagram'),
+      phone: val('phone'),
+      email: val('email'),
+      zonecode: val('zip'),
+      address: addressFull,
+      notes: val('memo'),
+      agree: '동의'
+    };
+    var brandRows = supportType === 'all' ? ['전체'] : selected.slice();
+
+    function sendRow(brandName) {
+      var payload = Object.assign({}, baseCommon, { brands: brandName });
+      return fetch(SHEET_ENDPOINT, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) })
+        .catch(function (err) { console.error('시트 전송 실패:', err); });
+    }
+
+    if (SHEET_ENDPOINT && SHEET_ENDPOINT.indexOf('PASTE_') !== 0) {
+      var chain = Promise.resolve();
+      brandRows.forEach(function (b) {
+        chain = chain.then(function () { return sendRow(b); }).then(function () { return sleep(400); });
+      });
+      chain.then(function () {
+        alert('지원서가 제출되었습니다.');
+        resetForm();
+      });
+    } else {
+      alert('지원서가 제출되었습니다.');
+      resetForm();
+    }
   });
 })();
 </script>
