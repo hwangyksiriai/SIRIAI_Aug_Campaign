@@ -236,12 +236,6 @@
         </div>
       </div>
 
-      <!-- 전체/개별 지원 공통 고지: Quadthera 고료 관련 안내 -->
-      <div style="display: flex; gap: 14px; padding: 18px 20px; border-radius: var(--radius); background: var(--accent-soft); border: 1px solid var(--accent);">
-        <span style="font-size: 18px; line-height: 1.4;">⚠️</span>
-        <p style="margin: 0; font-size: 13px; line-height: 1.7; letter-spacing: -0.01em; word-break: keep-all; overflow-wrap: break-word; color: var(--text);"><b>Quadthera</b>는 기기가 증정되는 캠페인으로 별도 고료 지급이 어렵습니다.<br>전체 지원 시에도 동일하게 적용되니 참고 후 지원해 주세요.</p>
-      </div>
-
       <!-- brand select (individual) -->
       <div id="brandSelect" style="display: none;">
         <div style="font-size: 13px; font-weight: 600; margin-bottom: 4px;">매칭 대상 브랜드 <span class="req">*</span></div>
@@ -327,11 +321,9 @@
     { name: 'MUSINSA STANDARD BEAUTY', file: '무신사스탠다드뷰티.png' },
     { name: 'BYNEWCELL', file: '바이뉴셀.png' },
     { name: 'INNISFREE', file: '이니스프리.png' },
-    { name: 'QUADTHERA', file: '쿼드쎄라.png' },
     { name: '29 Apostrophe', file: '29 Apostrophe.png', local: true },
     { name: 'KEEPINTOUCH', file: 'KEEPINTOUCH.png', local: true },
     { name: 'No the Love', file: 'No the Love.png', local: true },
-    { name: 'ODDTYPE', file: 'ODDTYPE.png', local: true },
     { name: 'OFFLOW', file: 'OFFLOW.png', local: true },
     { name: 'ohayoh', file: 'ohayoh.png', local: true }
   ];
@@ -371,17 +363,16 @@
       ] },
     { name: 'NURICLE (뉴리클)', links: [
         { label: '인스타그램 →', url: 'https://www.instagram.com/nuricle_kr/' },
-        { label: '제공제품 보기 (스킨케어 신제품) →', url: 'https://www.nuricle.kr/shop' }
+        { label: '제공제품 보기 1 →', url: 'https://www.nuricle.kr/shop_view/?idx=34' },
+        { label: '제공제품 보기 2 →', url: 'https://www.nuricle.kr/shop_view/?idx=35' }
+      ], note: '* 제공 제품은 두 가지 중 하나로 진행됩니다' },
+    { name: 'LUSOM', links: [
+        { label: '인스타그램 →', url: 'https://www.instagram.com/lusom_official/' },
+        { label: '가이드라인 보기 →', url: 'https://lusom-guide.vercel.app/guide' }
       ] },
-    { name: 'Quadthera', links: [
-        { label: '인스타그램 →', url: 'https://www.instagram.com/quadthera.official/' },
-        { label: '가이드라인 보기 →', url: 'https://quadthera-teenz-guide.vercel.app/olive-young2/index.html' }
-      ] },
-    { name: 'ODDTYPE (오드타입)', links: [
-        { label: '인스타그램 →', url: 'https://www.instagram.com/oddtype_official/' }
-      ] },
-    { name: 'ID 피부과', links: [
-        { label: '가이드라인 보기 →', url: 'https://id-dermatology-guide.vercel.app/' }
+    { name: 'CUMCURA (쿰쿠라)', links: [
+        { label: '인스타그램 →', url: 'https://www.instagram.com/cumcura.beauty/' },
+        { label: '가이드라인 보기 →', url: 'https://cumcura-guide.vercel.app/' }
       ] }
   ];
   var selected = [];
@@ -416,6 +407,7 @@
         (fb.links
           ? fb.links.map(function (l) { return '<a href="' + l.url + '" target="_blank" rel="noopener" style="display:block;margin-top:8px;font-size:12.5px;color:var(--muted);text-decoration:none;"><span style="border-bottom:1px solid var(--line);">' + l.label + '</span></a>'; }).join('')
           : '') +
+        (fb.note ? '<div style="margin-top:8px;font-size:11px;color:var(--muted);">' + fb.note + '</div>' : '') +
         '</div>';
     }).join('');
   }
