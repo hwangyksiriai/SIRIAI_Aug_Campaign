@@ -19,22 +19,29 @@
 
 var SHEET_NAME = '시트1';
 
-var HEADERS = [
-  '제출일시',
-  '구분',
-  '고료',
-  '지원유형',
-  '지원브랜드',
-  '리노센트랩 진행주차',
-  '이름',
-  '인스타그램',
-  '휴대폰',
-  '이메일',
-  '우편번호',
-  '배송지 주소',
-  '요청사항',
-  '동의여부'
+// 브랜드마다 자기 컬럼을 갖는다. 지원한 브랜드 컬럼에는 'O'가 채워진다.
+var BRAND_COLUMNS = [
+  'Re:Nnocent (리노센트랩)',
+  '루솜 LUSOM',
+  'it:fu (잇퓨)',
+  'Veryhour (베리아워)',
+  'NURICLE (뉴리클)',
+  'CUMCURA (쿰쿠라)'
 ];
+
+var HEADERS = ['제출일시', '구분', '고료', '지원유형']
+  .concat(BRAND_COLUMNS)
+  .concat([
+    '리노센트랩 진행주차',
+    '이름',
+    '인스타그램',
+    '휴대폰',
+    '이메일',
+    '우편번호',
+    '배송지 주소',
+    '요청사항',
+    '동의여부'
+  ]);
 
 function doPost(e) {
   var lock = LockService.getScriptLock();
@@ -43,24 +50,17 @@ function doPost(e) {
   try {
     var data = JSON.parse(e.postData.contents);
     var sheet = getOrCreateSheet();
-    var timestamp = new Date();
 
-    var brandsArr = Array.isArray(data.brands) ? data.brands : (data.brands ? [data.brands] : ['']);
-    var isIndividual = data.support_type === '개별 지원';
+    var brandsArr = Array.isArray(data.brands) ? data.brands : (data.brands ? [data.brands] : []);
 
-    // 개별 지원으로 여러 브랜드를 선택한 경우 브랜드마다 별도 행으로 기록.
-    // 전체 지원은 브랜드를 나열한 값 그대로 한 행에 기록.
-    var brandRows = isIndividual ? brandsArr : [brandsArr.join(', ')];
+    var brandFlags = BRAND_COLUMNS.map(function (col) {
+      return brandsArr.indexOf(col) > -1 ? 'O' : '';
+    });
 
-    brandRows.forEach(function (brandName) {
-      var week = (brandName.indexOf('Re:Nnocent') > -1) ? (data.nnocent_week || '') : '';
-      sheet.appendRow([
-        timestamp,
-        data.division || '',
-        data.amount || '',
-        data.support_type || '',
-        brandName,
-        week,
+    var row = [new Date(), data.division || '', data.amount || '', data.support_type || '']
+      .concat(brandFlags)
+      .concat([
+        data.nnocent_week || '',
         data.name || '',
         data.instagram || '',
         data.phone || '',
@@ -70,7 +70,8 @@ function doPost(e) {
         data.notes || '',
         data.agree || ''
       ]);
-    });
+
+    sheet.appendRow(row);
 
     return ContentService
       .createTextOutput(JSON.stringify({ result: 'success' }))
@@ -97,4 +98,18 @@ function getOrCreateSheet() {
     sheet.setFrozenRows(1);
   }
   return sheet;
+}
+
+/**
+ * 컬럼 구조를 바꾼 뒤(예: 이번처럼 지원브랜드를 컬럼으로 나눌 때) 한 번만 실행.
+ * 기존 테스트 데이터를 모두 지우고 새 헤더로 다시 씁니다.
+ * Apps Script 에디터에서 이 함수(resetSheet)를 선택한 뒤 [실행] 버튼으로 딱 한 번 돌리면 됩니다.
+ */
+function resetSheet() {
+  var ss = SpreadsheetApp.getActiveSpreadsheet();
+  var sheet = ss.getSheetByName(SHEET_NAME) || ss.getSheets()[0];
+  sheet.clear();
+  sheet.appendRow(HEADERS);
+  sheet.getRange(1, 1, 1, HEADERS.length).setFontWeight('bold');
+  sheet.setFrozenRows(1);
 }

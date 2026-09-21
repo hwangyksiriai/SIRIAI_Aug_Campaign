@@ -491,7 +491,7 @@
       division: DIVISION,
       amount: CAMPAIGN_AMOUNT,
       support_type: supportType === 'all' ? '전체 지원' : '개별 지원',
-      brands: supportType === 'all' ? ['전체'] : selected.slice(),
+      brands: supportType === 'all' ? formBrands.map(function (fb) { return fb.name; }) : selected.slice(),
       name: val('name'),
       instagram: val('instagram'),
       phone: val('phone'),
