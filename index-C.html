@@ -359,14 +359,14 @@
 
   // brand cards
   var formBrands = [
-    { name: 'Re:Nnocent (리노센트랩)', badge: 'RN', desc: '올리브영 구강케어 1위 브랜드 \'리브러쉬\'를 운영하는 주식회사 고차원에서 선보인 클렌징 케어 브랜드입니다. 피부를 본연의 무해한 상태로 되돌리는 것을 지향하는 스킨케어 브랜드입니다.', links: [
+    { name: 'Re:Nnocent (리노센트랩)', desc: '올리브영 구강케어 1위 브랜드 \'리브러쉬\'를 운영하는 주식회사 고차원에서 선보인 클렌징 케어 브랜드입니다. 피부를 본연의 무해한 상태로 되돌리는 것을 지향하는 스킨케어 브랜드입니다.', links: [
         { label: '가이드라인 보기 →', url: 'https://re-nnocentlabguideline.vercel.app/' }
       ] },
-    { name: '루솜 LUSOM', badge: 'LS', desc: 'K-뷰티 마스크팩 소재 전문 셀바이오휴먼텍이 만든, 팩에 진심인 브랜드', links: [
+    { name: '루솜 LUSOM', desc: 'K-뷰티 마스크팩 소재 전문 셀바이오휴먼텍이 만든, 팩에 진심인 브랜드', links: [
         { label: '인스타그램 →', url: 'https://www.instagram.com/lusom_official/' },
         { label: '가이드라인 보기 →', url: 'https://lusom-guide.vercel.app/guide-9' }
       ] },
-    { name: 'it:fu (잇퓨)', badge: 'IF', desc: '피부 요철 케어 · 저자극 성분 중심, 피부 고민과 스킨 솔루션을 잇다', links: [
+    { name: 'it:fu (잇퓨)', desc: '피부 요철 케어 · 저자극 성분 중심, 피부 고민과 스킨 솔루션을 잇다', links: [
         { label: '인스타그램 →', url: 'https://www.instagram.com/itfu_official/' },
         { label: '가이드라인 보기 →', url: 'https://itfu-guideline.vercel.app/campaign-04/' }
       ] }
@@ -399,8 +399,7 @@
   if (brandInfoGrid) {
     brandInfoGrid.innerHTML = formBrands.map(function (fb) {
       return '<div class="card" style="padding:28px;border-radius:var(--radius);border:1px solid var(--line);background:var(--surface);transition:transform .25s, box-shadow .25s;display:flex;flex-direction:column;">' +
-        '<div style="width:44px;height:44px;border-radius:12px;background:var(--accent-soft);color:var(--accent);display:flex;align-items:center;justify-content:center;font-weight:700;font-size:14px;letter-spacing:-0.02em;">' + (fb.badge || fb.name.charAt(0)) + '</div>' +
-        '<div class="head" style="font-size:20px;margin-top:18px;">' + fb.name + '</div>' +
+        '<div class="head" style="font-size:20px;">' + fb.name + '</div>' +
         '<p style="font-size:13px;line-height:1.65;color:var(--muted);margin:8px 0 0;word-break:keep-all;flex:1;">' + (fb.desc || '') + '</p>' +
         (fb.links
           ? '<div style="display:flex;flex-wrap:wrap;gap:8px;margin-top:18px;padding-top:18px;border-top:1px solid var(--line);">' +
