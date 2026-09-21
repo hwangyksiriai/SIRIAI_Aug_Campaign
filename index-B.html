@@ -357,14 +357,14 @@
 
   // brand cards
   var formBrands = [
-    { name: '루솜 LUSOM', links: [
+    { name: 'Re:Nnocent (리노센트랩)', desc: '다시, 무해하게 — 세안의 밀도를 채우는 클렌징 부스터 브랜드', links: [
+        { label: '가이드라인 보기 →', url: 'https://re-nnocentlabguideline.vercel.app/' }
+      ] },
+    { name: '루솜 LUSOM', desc: 'K-뷰티 마스크팩 소재 전문 셀바이오휴먼텍이 만든, 팩에 진심인 브랜드', links: [
         { label: '인스타그램 →', url: 'https://www.instagram.com/lusom_official/' },
         { label: '가이드라인 보기 →', url: 'https://lusom-guide.vercel.app/guide-9' }
       ] },
-    { name: 'Re:Nnocent (리노센트랩)', links: [
-        { label: '가이드라인 보기 →', url: 'https://re-nnocentlabguideline.vercel.app/' }
-      ] },
-    { name: 'it:fu (잇퓨)', links: [
+    { name: 'it:fu (잇퓨)', desc: '피부 요철 케어 · 저자극 성분 중심, 피부 고민과 스킨 솔루션을 잇다', links: [
         { label: '인스타그램 →', url: 'https://www.instagram.com/itfu_official/' },
         { label: '가이드라인 보기 →', url: 'https://itfu-guideline.vercel.app/campaign-04/' }
       ] }
@@ -398,6 +398,7 @@
     brandInfoGrid.innerHTML = formBrands.map(function (fb) {
       return '<div style="padding:20px;border-radius:var(--radius);border:1px solid var(--line);background:var(--surface);">' +
         '<div class="head" style="font-size:18px;">' + fb.name + '</div>' +
+        (fb.desc ? '<p style="margin:8px 0 0;font-size:12.5px;line-height:1.6;color:var(--muted);word-break:keep-all;">' + fb.desc + '</p>' : '') +
         (fb.links
           ? fb.links.map(function (l) { return '<a href="' + l.url + '" target="_blank" rel="noopener" style="display:block;margin-top:8px;font-size:12.5px;color:var(--muted);text-decoration:none;"><span style="border-bottom:1px solid var(--line);">' + l.label + '</span></a>'; }).join('')
           : '') +
