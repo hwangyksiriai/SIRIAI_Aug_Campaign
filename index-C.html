@@ -245,6 +245,13 @@
         <div id="brandGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px;"></div>
       </div>
 
+      <!-- Re:Nnocent 진행 주차 선택 -->
+      <div id="nnocentWeekSelect" style="display: none;">
+        <div style="font-size: 13px; font-weight: 600; margin-bottom: 4px;">Re:Nnocent (리노센트랩) 진행 주차 <span class="req">*</span></div>
+        <div style="font-size: 12.5px; color: var(--muted); margin-bottom: 14px;">10월 4주차 · 10월 5주차 · 11월 1주차 · 11월 2주차 중 참여 가능한 주차 하나를 선택해 주세요.</div>
+        <div id="weekGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px;"></div>
+      </div>
+
       <!-- fields -->
       <div style="display: grid; grid-template-columns: 1fr; gap: 18px;">
         <label class="lbl"><span>이름 <span class="req">*</span></span><input class="field" name="name" placeholder="홍길동" required></label>
@@ -359,21 +366,45 @@
 
   // brand cards
   var formBrands = [
-    { name: 'Re:Nnocent (리노센트랩)', desc: '올리브영 구강케어 1위 브랜드 \'리브러쉬\'를 운영하는 주식회사 고차원에서 선보인 클렌징 케어 브랜드입니다. 피부를 본연의 무해한 상태로 되돌리는 것을 지향하는 스킨케어 브랜드입니다.', links: [
+    { name: 'Re:Nnocent (리노센트랩)', desc: '올리브영 구강케어 1위 브랜드 \'리브러쉬\'를 운영하는 주식회사 고차원에서 선보인 클렌징 케어 브랜드입니다. 피부를 본연의 무해한 상태로 되돌리는 것을 지향하는 스킨케어 브랜드입니다.', note: '진행 주차: 10월 4주차 · 10월 5주차 · 11월 1주차 · 11월 2주차 중 택1', links: [
         { label: '가이드라인 보기 →', url: 'https://re-nnocentlabguideline.vercel.app/' }
       ] },
-    { name: '루솜 LUSOM', desc: 'K-뷰티 마스크팩 소재 전문 셀바이오휴먼텍이 만든, 팩에 진심인 브랜드', links: [
+    { name: '루솜 LUSOM', desc: 'K-뷰티 마스크팩 소재 전문 셀바이오휴먼텍이 만든, 팩에 진심인 브랜드', note: '10월 중 진행 · 정확한 일정은 미정입니다', links: [
         { label: '인스타그램 →', url: 'https://www.instagram.com/lusom_official/' },
         { label: '가이드라인 보기 →', url: 'https://lusom-guide.vercel.app/guide-9' }
       ] },
-    { name: 'it:fu (잇퓨)', desc: '피부 요철 케어 · 저자극 성분 중심, 피부 고민과 스킨 솔루션을 잇다', links: [
+    { name: 'it:fu (잇퓨)', desc: '피부 요철 케어 · 저자극 성분 중심, 피부 고민과 스킨 솔루션을 잇다', note: '10월 중 진행 · 정확한 일정은 미정입니다', links: [
         { label: '인스타그램 →', url: 'https://www.instagram.com/itfu_official/' },
         { label: '가이드라인 보기 →', url: 'https://itfu-guideline.vercel.app/campaign-04/' }
       ] }
   ];
+  var NNOCENT_WEEKS = ['10월 4주차', '10월 5주차', '11월 1주차', '11월 2주차'];
   var selected = [];
+  var selectedWeek = '';
   var grid = document.getElementById('brandGrid');
   var selCount = document.getElementById('selCount');
+  var nnocentWeekSelect = document.getElementById('nnocentWeekSelect');
+  var weekGrid = document.getElementById('weekGrid');
+  function renderWeeks() {
+    weekGrid.innerHTML = NNOCENT_WEEKS.map(function (w) {
+      var on = selectedWeek === w;
+      return '<div data-w="' + w + '" style="position:relative;cursor:pointer;padding:16px 12px;border-radius:var(--radius);border:1px solid ' + (on ? 'var(--accent)' : 'var(--line)') + ';background:' + (on ? 'var(--accent-soft)' : 'var(--surface)') + ';transition:border-color .2s, background .2s;text-align:center;">' +
+        '<div class="head" style="font-size:15px;color:' + (on ? 'var(--accent)' : 'var(--text)') + ';">' + w + '</div>' +
+        '</div>';
+    }).join('');
+  }
+  weekGrid.addEventListener('click', function (e) {
+    var card = e.target.closest('[data-w]');
+    if (!card) return;
+    selectedWeek = card.getAttribute('data-w');
+    renderWeeks();
+  });
+  function syncNnocentWeekVisibility() {
+    var needsWeek = selected.indexOf('Re:Nnocent (리노센트랩)') > -1;
+    nnocentWeekSelect.style.display = needsWeek ? 'block' : 'none';
+    if (!needsWeek) selectedWeek = '';
+    renderWeeks();
+  }
   function renderBrands() {
     grid.innerHTML = formBrands.map(function (fb, i) {
       var on = selected.indexOf(fb.name) > -1;
@@ -391,6 +422,7 @@
     var idx = selected.indexOf(name);
     if (idx > -1) selected.splice(idx, 1); else selected.push(name);
     renderBrands();
+    syncNnocentWeekVisibility();
   });
   renderBrands();
 
@@ -475,6 +507,7 @@
   function resetForm() {
     form.reset();
     selected = []; renderBrands();
+    selectedWeek = ''; syncNnocentWeekVisibility();
     agreed = false; agreeMark.style.display = 'none';
     supportType = 'all';
     indicator.style.transform = 'translateX(0)';
@@ -487,6 +520,7 @@
     e.preventDefault();
     if (!form.checkValidity()) { form.reportValidity(); return; }
     if (supportType === 'individual' && selected.length === 0) { alert('개별 지원 시 최소 한 개 이상의 브랜드를 선택해 주세요.'); return; }
+    if (supportType === 'individual' && selected.indexOf('Re:Nnocent (리노센트랩)') > -1 && !selectedWeek) { alert('Re:Nnocent(리노센트랩) 진행 주차를 선택해 주세요.'); return; }
     if (!agreed) { alert('필수 동의 항목에 체크해 주세요.'); return; }
 
     var addressFull = (val('address') + ' ' + val('addressDetail')).trim();
@@ -495,6 +529,7 @@
       amount: CAMPAIGN_AMOUNT,
       support_type: supportType === 'all' ? '전체 지원' : '개별 지원',
       brands: supportType === 'all' ? ['전체'] : selected.slice(),
+      nnocent_week: (supportType === 'individual' && selected.indexOf('Re:Nnocent (리노센트랩)') > -1) ? selectedWeek : '',
       name: val('name'),
       instagram: val('instagram'),
       phone: val('phone'),
