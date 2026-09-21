@@ -222,7 +222,7 @@
     <div style="margin-top: 24px; padding: 22px 24px; border-radius: var(--radius); background: var(--accent-soft); border: 1px solid var(--accent);">
       <div style="font-size: 13px; font-weight: 700; color: var(--accent); margin-bottom: 10px;">📅 브랜드별 진행 일정 안내</div>
       <div style="display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; line-height: 1.65; color: var(--text); word-break: keep-all;">
-        <div><b>Re:Nnocent (리노센트랩)</b> — 10월 4주차 · 10월 5주차 · 11월 1주차 · 11월 2주차 중 참여 가능한 주차를 아래 지원서에서 선택해 주세요.</div>
+        <div><b>Re:Nnocent (리노센트랩)</b> — 10월 4주차(10/19~10/25) · 10월 5주차(10/26~11/1) · 11월 1주차(11/2~11/8) · 11월 2주차(11/9~11/15) 중 참여 가능한 주차를 아래 지원서에서 선택해 주세요.</div>
         <div><b>루솜 · it:fu</b> — 10월 중 진행 예정이나, 프로모션 일정에 따라 정확한 날짜는 아직 미정입니다. 선정 후 추후 자세히 안내드립니다.</div>
       </div>
     </div>
@@ -257,7 +257,7 @@
       <!-- Re:Nnocent 진행 주차 선택 -->
       <div id="nnocentWeekSelect" style="display: none;">
         <div style="font-size: 13px; font-weight: 600; margin-bottom: 4px;">Re:Nnocent (리노센트랩) 진행 주차 <span class="req">*</span></div>
-        <div style="font-size: 12.5px; color: var(--muted); margin-bottom: 14px;">10월 4주차 · 10월 5주차 · 11월 1주차 · 11월 2주차 중 참여 가능한 주차 하나를 선택해 주세요.</div>
+        <div style="font-size: 12.5px; color: var(--muted); margin-bottom: 14px;">10월 4주차(10/19~10/25) · 10월 5주차(10/26~11/1) · 11월 1주차(11/2~11/8) · 11월 2주차(11/9~11/15) 중 참여 가능한 주차 하나를 선택해 주세요.</div>
         <div id="weekGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px;"></div>
       </div>
 
@@ -370,6 +370,7 @@
         x.style.color = x.getAttribute('data-opt') === supportType ? 'var(--on-accent)' : 'var(--muted)';
       });
       brandSelect.style.display = supportType === 'individual' ? 'block' : 'none';
+      syncNnocentWeekVisibility();
     });
   });
 
@@ -387,7 +388,7 @@
         { label: '가이드라인 보기 →', url: 'https://itfu-guideline.vercel.app/campaign-04/' }
       ] }
   ];
-  var NNOCENT_WEEKS = ['10월 4주차', '10월 5주차', '11월 1주차', '11월 2주차'];
+  var NNOCENT_WEEKS = ['10월 4주차 (10/19~10/25)', '10월 5주차 (10/26~11/1)', '11월 1주차 (11/2~11/8)', '11월 2주차 (11/9~11/15)'];
   var selected = [];
   var selectedWeek = '';
   var grid = document.getElementById('brandGrid');
@@ -408,8 +409,11 @@
     selectedWeek = card.getAttribute('data-w');
     renderWeeks();
   });
+  function nnocentIncluded() {
+    return supportType === 'all' || selected.indexOf('Re:Nnocent (리노센트랩)') > -1;
+  }
   function syncNnocentWeekVisibility() {
-    var needsWeek = selected.indexOf('Re:Nnocent (리노센트랩)') > -1;
+    var needsWeek = nnocentIncluded();
     nnocentWeekSelect.style.display = needsWeek ? 'block' : 'none';
     if (!needsWeek) selectedWeek = '';
     renderWeeks();
@@ -434,6 +438,7 @@
     syncNnocentWeekVisibility();
   });
   renderBrands();
+  syncNnocentWeekVisibility();
 
   // 브랜드 소개 (캠페인 개요 아래, 지원 전 참고용)
   var brandInfoGrid = document.getElementById('brandInfoGrid');
@@ -515,12 +520,12 @@
   function resetForm() {
     form.reset();
     selected = []; renderBrands();
-    selectedWeek = ''; syncNnocentWeekVisibility();
     agreed = false; agreeMark.style.display = 'none';
     supportType = 'all';
     indicator.style.transform = 'translateX(0)';
     optBtns.forEach(function (x) { x.style.color = x.getAttribute('data-opt') === 'all' ? 'var(--on-accent)' : 'var(--muted)'; });
     brandSelect.style.display = 'none';
+    selectedWeek = ''; syncNnocentWeekVisibility();
   }
 
   // submit → 구글 시트 전송 (1인 1행, 선택한 브랜드는 열로 나열)
@@ -528,7 +533,7 @@
     e.preventDefault();
     if (!form.checkValidity()) { form.reportValidity(); return; }
     if (supportType === 'individual' && selected.length === 0) { alert('개별 지원 시 최소 한 개 이상의 브랜드를 선택해 주세요.'); return; }
-    if (supportType === 'individual' && selected.indexOf('Re:Nnocent (리노센트랩)') > -1 && !selectedWeek) { alert('Re:Nnocent(리노센트랩) 진행 주차를 선택해 주세요.'); return; }
+    if (nnocentIncluded() && !selectedWeek) { alert('Re:Nnocent(리노센트랩) 진행 주차를 선택해 주세요.'); return; }
     if (!agreed) { alert('필수 동의 항목에 체크해 주세요.'); return; }
 
     var addressFull = (val('address') + ' ' + val('addressDetail')).trim();
@@ -537,7 +542,7 @@
       amount: CAMPAIGN_AMOUNT,
       support_type: supportType === 'all' ? '전체 지원' : '개별 지원',
       brands: supportType === 'all' ? ['전체'] : selected.slice(),
-      nnocent_week: (supportType === 'individual' && selected.indexOf('Re:Nnocent (리노센트랩)') > -1) ? selectedWeek : '',
+      nnocent_week: nnocentIncluded() ? selectedWeek : '',
       name: val('name'),
       instagram: val('instagram'),
       phone: val('phone'),
