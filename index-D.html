@@ -49,6 +49,7 @@
   .fig:hover { transform: translateY(-6px); box-shadow: 0 24px 48px -28px rgba(0,0,0,.4); }
   .chip-link { text-decoration: none; font-size: 12.5px; font-weight: 600; color: var(--text); border: 1px solid var(--line); padding: 7px 13px; border-radius: 999px; white-space: nowrap; transition: border-color .2s, color .2s, background .2s; }
   .chip-link:hover { border-color: var(--accent); color: var(--accent); background: var(--accent-soft); }
+  .brand-card:hover { transform: translateY(-4px); box-shadow: 0 18px 40px -24px rgba(0,0,0,.3); }
   .req { color: var(--accent); }
   @media (max-width: 600px) {
     .wrap { padding-left: 18px !important; padding-right: 18px !important; }
@@ -366,14 +367,14 @@
 
   // brand cards
   var formBrands = [
-    { name: 'Re:Nnocent (리노센트랩)', desc: '올리브영 구강케어 1위 브랜드 \'리브러쉬\'를 운영하는 주식회사 고차원에서 선보인 클렌징 케어 브랜드입니다. 피부를 본연의 무해한 상태로 되돌리는 것을 지향하는 스킨케어 브랜드입니다.', note: '진행 주차: 10월 4주차 · 10월 5주차 · 11월 1주차 · 11월 2주차 중 택1', links: [
+    { name: 'Re:Nnocent (리노센트랩)', desc: '올리브영 구강케어 1위 브랜드 \'리브러쉬\'를 운영하는 주식회사 고차원에서 선보인 클렌징 케어 브랜드입니다. 피부를 본연의 무해한 상태로 되돌리는 것을 지향하는 스킨케어 브랜드입니다.', links: [
         { label: '가이드라인 보기 →', url: 'https://re-nnocentlabguideline.vercel.app/' }
       ] },
-    { name: '루솜 LUSOM', desc: 'K-뷰티 마스크팩 소재 전문 셀바이오휴먼텍이 만든, 팩에 진심인 브랜드', note: '10월 중 진행 · 정확한 일정은 미정입니다', links: [
+    { name: '루솜 LUSOM', desc: 'K-뷰티 마스크팩 소재 전문 셀바이오휴먼텍이 만든, 팩에 진심인 브랜드', links: [
         { label: '인스타그램 →', url: 'https://www.instagram.com/lusom_official/' },
         { label: '가이드라인 보기 →', url: 'https://lusom-guide.vercel.app/guide-9' }
       ] },
-    { name: 'it:fu (잇퓨)', desc: '피부 요철 케어 · 저자극 성분 중심, 피부 고민과 스킨 솔루션을 잇다', note: '10월 중 진행 · 정확한 일정은 미정입니다', links: [
+    { name: 'it:fu (잇퓨)', desc: '피부 요철 케어 · 저자극 성분 중심, 피부 고민과 스킨 솔루션을 잇다', links: [
         { label: '인스타그램 →', url: 'https://www.instagram.com/itfu_official/' },
         { label: '가이드라인 보기 →', url: 'https://itfu-guideline.vercel.app/campaign-04/' }
       ] }
@@ -430,7 +431,7 @@
   var brandInfoGrid = document.getElementById('brandInfoGrid');
   if (brandInfoGrid) {
     brandInfoGrid.innerHTML = formBrands.map(function (fb) {
-      return '<div class="card" style="padding:28px;border-radius:var(--radius);border:1px solid var(--line);background:var(--surface);transition:transform .25s, box-shadow .25s;display:flex;flex-direction:column;">' +
+      return '<div class="brand-card" style="padding:28px;border-radius:var(--radius);border:1px solid var(--line);background:var(--surface);transition:transform .25s, box-shadow .25s;display:flex;flex-direction:column;">' +
         '<div class="head" style="font-size:20px;">' + fb.name + '</div>' +
         '<p style="font-size:13px;line-height:1.65;color:var(--muted);margin:8px 0 0;word-break:keep-all;flex:1;">' + (fb.desc || '') + '</p>' +
         (fb.links
@@ -438,7 +439,6 @@
             fb.links.map(function (l) { return '<a href="' + l.url + '" target="_blank" rel="noopener" class="chip-link">' + l.label + '</a>'; }).join('') +
             '</div>'
           : '') +
-        (fb.note ? '<div style="margin-top:10px;font-size:11px;color:var(--muted);">' + fb.note + '</div>' : '') +
         '</div>';
     }).join('');
   }
