@@ -71,7 +71,12 @@ function doPost(e) {
         data.agree || ''
       ]);
 
-    sheet.appendRow(row);
+    var nextRow = sheet.getLastRow() + 1;
+    // 우편번호는 숫자로 인식되면 앞자리 0이 사라지므로, 값을 쓰기 전에
+    // 해당 셀을 텍스트 서식으로 고정해 그대로 저장되게 한다.
+    var zipColIndex = HEADERS.indexOf('우편번호') + 1;
+    sheet.getRange(nextRow, zipColIndex).setNumberFormat('@');
+    sheet.getRange(nextRow, 1, 1, row.length).setValues([row]);
 
     return ContentService
       .createTextOutput(JSON.stringify({ result: 'success' }))
