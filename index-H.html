@@ -420,6 +420,26 @@
   var form = document.getElementById('applyForm');
   function val(n) { var el = form.querySelector('[name="' + n + '"]'); return el ? (el.value || '').trim() : ''; }
 
+  // 신청 완료 알림 모달 (일부 모바일 인앱 브라우저에서 alert()가 차단되는 문제 방지)
+  function showSuccessModal() {
+    var overlay = document.createElement('div');
+    overlay.style.cssText = 'position:fixed;inset:0;z-index:9999;background:rgba(0,0,0,.55);display:flex;align-items:center;justify-content:center;padding:20px;';
+    var box = document.createElement('div');
+    box.style.cssText = 'background:var(--surface);width:100%;max-width:360px;border-radius:calc(var(--radius) + 16px);padding:36px 28px 28px;text-align:center;box-shadow:0 24px 60px rgba(0,0,0,.35);';
+    box.innerHTML =
+      '<div style="width:52px;height:52px;margin:0 auto 18px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;">' +
+        '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>' +
+      '</div>' +
+      '<div class="head" style="font-size:19px;color:var(--text);margin-bottom:8px;">신청이 완료되었습니다</div>' +
+      '<div style="font-size:13.5px;color:var(--muted);line-height:1.6;margin-bottom:22px;">캠페인 지원서 제출이 정상적으로 접수됐어요.<br>담당자 확인 후 순차 안내드리겠습니다.</div>' +
+      '<button type="button" id="successCloseBtn" class="btn-accent" style="width:100%;padding:14px;border:none;border-radius:var(--radius);font-size:14px;font-weight:600;cursor:pointer;">확인</button>';
+    overlay.appendChild(box);
+    document.body.appendChild(overlay);
+    function remove() { if (overlay.parentNode) overlay.parentNode.removeChild(overlay); }
+    box.querySelector('#successCloseBtn').addEventListener('click', remove);
+    overlay.addEventListener('click', function (e) { if (e.target === overlay) remove(); });
+  }
+
   // 휴대폰 자동 포맷
   var phoneEl = form.querySelector('[name="phone"]');
   if (phoneEl) {
@@ -506,8 +526,8 @@
       fetch(SHEET_ENDPOINT, { method: 'POST', mode: 'no-cors', headers: { 'Content-Type': 'text/plain;charset=utf-8' }, body: JSON.stringify(payload) })
         .catch(function (err) { console.error('시트 전송 실패:', err); });
     }
-    alert('지원서가 제출되었습니다.');
     resetForm();
+    showSuccessModal();
   });
 })();
 </script>
