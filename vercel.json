@@ -1,0 +1,13 @@
+{
+  "cleanUrls": true,
+  "redirects": [
+    { "source": "/index-A.html", "destination": "/nov-1", "permanent": true },
+    { "source": "/index-B.html", "destination": "/nov-2", "permanent": true },
+    { "source": "/index-C.html", "destination": "/nov-3", "permanent": true },
+    { "source": "/index-D.html", "destination": "/nov-4", "permanent": true },
+    { "source": "/index-A", "destination": "/nov-1", "permanent": true },
+    { "source": "/index-B", "destination": "/nov-2", "permanent": true },
+    { "source": "/index-C", "destination": "/nov-3", "permanent": true },
+    { "source": "/index-D", "destination": "/nov-4", "permanent": true }
+  ]
+}

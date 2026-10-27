@@ -9,7 +9,7 @@
  *    - 실행 계정: 나
  *    - 액세스 권한: 모든 사용자
  * 4) 배포 후 나오는 웹 앱 URL(.../exec)을 복사
- * 5) index-A~I.html 의 SHEET_ENDPOINT 값을 그 URL로 교체
+ * 5) nov-1~4.html, index-E~I.html 의 SHEET_ENDPOINT 값을 그 URL로 교체
  *
  * 코드만 수정된 경우 (URL 이미 있음)
  * - Apps Script 에디터에서 코드를 이 내용으로 덮어쓴 뒤
