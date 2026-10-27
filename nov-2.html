@@ -403,11 +403,16 @@
   function renderBrands() {
     grid.innerHTML = formBrands.map(function (fb, i) {
       var on = selected.indexOf(fb.name) > -1;
-      return '<div data-i="' + i + '" style="position:relative;cursor:pointer;padding:20px;border-radius:var(--radius);border:1px solid var(--line);background:var(--surface);transition:border-color .2s;display:flex;align-items:center;justify-content:center;text-align:center;min-height:64px;">' +
-        (on ? '<div style="position:absolute;inset:0;border:2px solid var(--accent);border-radius:var(--radius);pointer-events:none;"></div><div style="position:absolute;top:10px;right:10px;width:20px;height:20px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M5 12.5l4.5 4.5L19 7"></path></svg></div>' : '') +
-        '<div><div class="head" style="font-size:18px;">' + fb.name + '</div>' +
-        (guideUrl(fb) ? '<a href="' + guideUrl(fb) + '" target="_blank" rel="noopener" data-guide style="display:inline-block;margin-top:6px;font-size:12px;color:var(--muted);">가이드 보기 ↗</a>' : '') +
-        '</div></div>';
+      // 선택 전: 빈 체크박스 / 선택 후: 카드 전체를 포인트 색으로 채우고 체크 + '선택됨' 표시
+      return '<div data-i="' + i + '" role="checkbox" aria-checked="' + on + '" style="cursor:pointer;padding:16px 18px;border-radius:var(--radius);border:2px solid ' + (on ? 'var(--accent)' : 'var(--line)') + ';background:' + (on ? 'var(--accent)' : 'var(--surface)') + ';color:' + (on ? 'var(--on-accent)' : 'var(--text)') + ';transition:background .2s, border-color .2s, box-shadow .2s;box-shadow:' + (on ? '0 10px 24px -14px var(--accent)' : 'none') + ';display:flex;align-items:center;gap:14px;min-height:72px;">' +
+        '<div style="flex:none;width:26px;height:26px;border-radius:6px;border:2px solid ' + (on ? 'var(--on-accent)' : 'var(--muted)') + ';background:' + (on ? 'var(--on-accent)' : 'transparent') + ';display:flex;align-items:center;justify-content:center;color:var(--accent);">' +
+          (on ? '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>' : '') +
+        '</div>' +
+        '<div style="flex:1;min-width:0;text-align:left;"><div class="head" style="font-size:17px;">' + fb.name + '</div>' +
+        (guideUrl(fb) ? '<a href="' + guideUrl(fb) + '" target="_blank" rel="noopener" data-guide style="display:inline-block;margin-top:4px;font-size:12px;color:' + (on ? 'var(--on-accent)' : 'var(--muted)') + ';opacity:' + (on ? '0.85' : '1') + ';">가이드 보기 ↗</a>' : '') +
+        '</div>' +
+        (on ? '<span style="flex:none;font-size:11.5px;font-weight:700;padding:4px 9px;border-radius:999px;background:var(--on-accent);color:var(--accent);">선택됨</span>' : '') +
+        '</div>';
     }).join('');
     selCount.textContent = selected.length > 0 ? '· ' + selected.length + '개 선택됨' : '';
   }
@@ -512,8 +517,8 @@
       '<div style="width:52px;height:52px;margin:0 auto 18px;border-radius:50%;background:var(--accent);display:flex;align-items:center;justify-content:center;">' +
         '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7"></path></svg>' +
       '</div>' +
-      '<div class="head" style="font-size:19px;color:var(--text);margin-bottom:8px;">신청이 완료되었습니다</div>' +
-      '<div style="font-size:13.5px;color:var(--muted);line-height:1.6;margin-bottom:22px;">캠페인 지원서 제출이 정상적으로 접수됐어요.<br>담당자 확인 후 순차 안내드리겠습니다.</div>' +
+      '<div class="head" style="font-size:19px;color:var(--text);margin-bottom:8px;">지원이 접수되었습니다</div>' +
+      '<div style="font-size:13.5px;color:var(--muted);line-height:1.6;margin-bottom:22px;word-break:keep-all;">지원해 주셔서 감사합니다.<br>브랜드 선정이 완료되면 개별적으로 안내드릴 예정입니다.</div>' +
       '<button type="button" id="successCloseBtn" class="btn-accent" style="width:100%;padding:14px;border:none;border-radius:var(--radius);font-size:14px;font-weight:600;cursor:pointer;">확인</button>';
     overlay.appendChild(box);
     document.body.appendChild(overlay);
