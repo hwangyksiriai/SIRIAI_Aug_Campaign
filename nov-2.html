@@ -271,7 +271,7 @@
       <!-- fields -->
       <div style="display: grid; grid-template-columns: 1fr; gap: 18px;">
         <label class="lbl"><span>이름 <span class="req">*</span></span><input class="field" name="name" placeholder="홍길동" autocomplete="name" required></label>
-        <label class="lbl"><span>인스타그램 링크 <span class="req">*</span></span><input class="field" name="instagram" placeholder="instagram.com/@username" autocapitalize="none" autocorrect="off" spellcheck="false" required></label>
+        <label class="lbl"><span>인스타그램 계정 <span class="req">*</span></span><input class="field" name="instagram" placeholder="@username 또는 인스타그램 링크" autocapitalize="none" autocorrect="off" spellcheck="false" required></label>
         <label class="lbl"><span>휴대폰 <span class="req">*</span></span><input class="field" name="phone" type="tel" inputmode="numeric" placeholder="010-0000-0000" autocomplete="tel" required></label>
         <label class="lbl"><span>이메일 <span style="color: var(--muted); font-weight: 400;">(선택)</span></span><input class="field" name="email" type="email" placeholder="name@email.com" autocomplete="email" autocapitalize="none"></label>
       </div>
@@ -581,6 +581,17 @@
   var form = document.getElementById('applyForm');
   function val(n) { var el = form.querySelector('[name="' + n + '"]'); return el ? (el.value || '').trim() : ''; }
 
+  // 'username' · '@username' · 'instagram.com/username' · 프로필 링크(공유 파라미터 포함)를
+  // 모두 https://www.instagram.com/username/ 형태로 맞춘다. 알아볼 수 없으면 ''.
+  function instagramUrl(raw) {
+    var v = (raw || '').trim().replace(/\s+/g, '');
+    var m = v.match(/instagram\.com\/@?([A-Za-z0-9._]+)/i);
+    var handle = m ? m[1] : v.replace(/^@+/, '');
+    if (!/^[A-Za-z0-9._]{1,30}$/.test(handle)) return '';
+    if (/^(p|reel|reels|stories|explore|accounts)$/i.test(handle)) return '';
+    return 'https://www.instagram.com/' + handle.toLowerCase() + '/';
+  }
+
   // 오류 안내 (alert 대신 화면에 표시)
   var formError = document.getElementById('formError');
   function showError(msg, target) {
@@ -696,6 +707,8 @@
     e.preventDefault();
     if (!form.checkValidity()) { form.reportValidity(); return; }
     if (supportType === 'individual' && selected.length === 0) { showError('개별 지원 시 지원할 브랜드를 한 개 이상 선택해 주세요.', brandSelect); return; }
+    var igUrl = instagramUrl(val('instagram'));
+    if (!igUrl) { showError('인스타그램 계정을 다시 확인해 주세요. @username 또는 프로필 링크를 입력하시면 됩니다.', form.querySelector('[name="instagram"]')); return; }
     if (!agreed) { showError('필수 동의 항목에 체크해 주세요.', agreeRow); return; }
 
     var addressFull = (val('address') + ' ' + val('addressDetail')).trim();
@@ -705,7 +718,7 @@
       support_type: supportType === 'all' ? '전체 지원' : '개별 지원',
       brands: supportType === 'all' ? formBrands.map(function (fb) { return fb.name; }) : selected.slice(),
       name: val('name'),
-      instagram: val('instagram'),
+      instagram: igUrl,
       phone: val('phone'),
       email: val('email'),
       zonecode: val('zip'),

@@ -41,7 +41,17 @@ var HEADERS = ['제출일시', '구분', '고료', '지원유형']
   ]);
 
 // 앞자리 0이 사라지지 않도록 텍스트로 저장할 컬럼
-var TEXT_COLUMNS = ['휴대폰', '우편번호'];
+var TEXT_COLUMNS = ['제출일시', '휴대폰', '우편번호'];
+
+// 'username' · '@username' · 'instagram.com/username' · 프로필 링크를
+// https://www.instagram.com/username/ 형태로 맞춘다. 알아볼 수 없으면 입력값 그대로 둔다.
+function instagramUrl(raw) {
+  var v = String(raw || '').trim().replace(/\s+/g, '');
+  var m = v.match(/instagram\.com\/@?([A-Za-z0-9._]+)/i);
+  var handle = m ? m[1] : v.replace(/^@+/, '');
+  if (!/^[A-Za-z0-9._]{1,30}$/.test(handle) || /^(p|reel|reels|stories|explore|accounts)$/i.test(handle)) return v;
+  return 'https://www.instagram.com/' + handle.toLowerCase() + '/';
+}
 
 function doPost(e) {
   var lock = LockService.getScriptLock();
@@ -60,11 +70,14 @@ function doPost(e) {
     // 페이지에서 배송지 주소와 상세 주소를 합쳐 보내지만, 따로 오는 경우에도 한 칸에 합친다.
     var address = [data.address, data.addressDetail].filter(function (v) { return v; }).join(' ');
 
-    var row = [new Date(), data.division || '', data.amount || '', data.support_type || '']
+    // 제출 시간: 스크립트 시간대 설정과 무관하게 한국 시간으로, 날짜와 시각을 함께 기록
+    var submittedAt = Utilities.formatDate(new Date(), 'Asia/Seoul', 'yyyy-MM-dd HH:mm:ss');
+
+    var row = [submittedAt, data.division || '', data.amount || '', data.support_type || '']
       .concat(brandChecks)
       .concat([
         data.name || '',
-        data.instagram || '',
+        instagramUrl(data.instagram),
         data.phone || '',
         data.email || '',
         data.zonecode || '',
