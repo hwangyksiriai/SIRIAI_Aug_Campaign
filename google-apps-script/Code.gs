@@ -29,6 +29,13 @@ var BRAND_COLUMNS = [
   'CUMCURA (쿰쿠라)'
 ];
 
+// 나중에 추가된 브랜드. 기존 데이터의 열이 밀리지 않도록 맨 뒤(동의여부 다음)에 붙인다.
+// 브랜드를 더 추가할 때도 이 배열 끝에만 이어서 적는다.
+var EXTRA_BRAND_COLUMNS = [
+  'LOYR (로이어)',
+  'PURCELL (퍼셀)'
+];
+
 var HEADERS = ['제출일시', '구분', '고료', '지원유형']
   .concat(BRAND_COLUMNS)
   .concat([
@@ -41,7 +48,8 @@ var HEADERS = ['제출일시', '구분', '고료', '지원유형']
     '배송지 주소',
     '요청사항',
     '동의여부'
-  ]);
+  ])
+  .concat(EXTRA_BRAND_COLUMNS);
 
 function doPost(e) {
   var lock = LockService.getScriptLock();
@@ -53,9 +61,10 @@ function doPost(e) {
 
     var brandsArr = Array.isArray(data.brands) ? data.brands : (data.brands ? [data.brands] : []);
 
-    var brandFlags = BRAND_COLUMNS.map(function (col) {
+    function flag(col) {
       return brandsArr.indexOf(col) > -1 ? 'O' : '';
-    });
+    }
+    var brandFlags = BRAND_COLUMNS.map(flag);
 
     var row = [new Date(), data.division || '', data.amount || '', data.support_type || '']
       .concat(brandFlags)
@@ -69,7 +78,8 @@ function doPost(e) {
         data.address || '',
         data.notes || '',
         data.agree || ''
-      ]);
+      ])
+      .concat(EXTRA_BRAND_COLUMNS.map(flag));
 
     var nextRow = sheet.getLastRow() + 1;
     // 우편번호는 숫자로 인식되면 앞자리 0이 사라지므로, 값을 쓰기 전에
@@ -101,6 +111,11 @@ function getOrCreateSheet() {
     sheet.appendRow(HEADERS);
     sheet.getRange(1, 1, 1, HEADERS.length).setFontWeight('bold');
     sheet.setFrozenRows(1);
+  } else if (sheet.getLastColumn() < HEADERS.length) {
+    // 기존 시트: 앞쪽 헤더는 그대로 두고, 새로 생긴 뒤쪽 헤더만 채운다.
+    var start = sheet.getLastColumn() + 1;
+    var added = HEADERS.slice(start - 1);
+    sheet.getRange(1, start, 1, added.length).setValues([added]).setFontWeight('bold');
   }
   return sheet;
 }
