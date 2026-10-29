@@ -24,7 +24,9 @@ var BRAND_COLUMNS = [
   '루솜 LUSOM',
   'LOYR (로이어)',
   'it:fu (잇퓨)',
-  'PURCELL (퍼셀)'
+  'PURCELL (퍼셀)',
+  'NURICLE (뉴리클)',
+  'Re:Nnocent (리노센트랩)'
 ];
 
 var HEADERS = ['제출일시', '구분', '고료', '지원유형']
@@ -116,6 +118,21 @@ function getOrCreateSheet() {
     sheet.appendRow(HEADERS);
     sheet.getRange(1, 1, 1, HEADERS.length).setFontWeight('bold');
     sheet.setFrozenRows(1);
+  } else {
+    ensureBrandColumns(sheet);
   }
   return sheet;
+}
+
+// 이미 데이터가 쌓인 시트에 브랜드가 추가된 경우, 빠진 브랜드 컬럼을 앞 브랜드 바로 뒤에 끼워 넣어
+// 기존 행과 새 행의 칸이 어긋나지 않게 한다. (기존 행의 새 브랜드 칸은 빈칸으로 남는다)
+function ensureBrandColumns(sheet) {
+  var header = sheet.getRange(1, 1, 1, sheet.getLastColumn()).getValues()[0];
+  BRAND_COLUMNS.forEach(function (col, i) {
+    if (header.indexOf(col) > -1) return;
+    var prev = i === 0 ? HEADERS.indexOf(col) : header.indexOf(BRAND_COLUMNS[i - 1]) + 1;
+    sheet.insertColumnAfter(prev);
+    sheet.getRange(1, prev + 1).setValue(col).setFontWeight('bold');
+    header.splice(prev, 0, col);
+  });
 }
