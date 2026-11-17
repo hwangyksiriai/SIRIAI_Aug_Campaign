@@ -255,15 +255,16 @@
         <div style="font-size: 13px; font-weight: 600; margin-bottom: 12px;">지원 옵션 선택 <span class="req">*</span></div>
         <div style="position: relative; display: grid; grid-template-columns: 1fr 1fr; padding: 5px; background: var(--surface); border: 1px solid var(--line); border-radius: 999px;">
           <div id="optIndicator" style="position: absolute; top: 5px; bottom: 5px; left: 5px; width: calc(50% - 5px); border-radius: 999px; background: var(--accent); z-index: 0; transform: translateX(0); transition: transform .3s cubic-bezier(.4,0,.2,1);"></div>
-          <button type="button" data-opt="all" style="position: relative; z-index: 1; padding: 12px; border: none; background: transparent; cursor: pointer; font-family: inherit; font-size: 14px; font-weight: 600; color: var(--on-accent); transition: color .25s;">전체 지원하기</button>
-          <button type="button" data-opt="individual" style="position: relative; z-index: 1; padding: 12px; border: none; background: transparent; cursor: pointer; font-family: inherit; font-size: 14px; font-weight: 600; color: var(--muted); transition: color .25s;">개별 지원하기</button>
+          <button type="button" data-opt="individual" style="position: relative; z-index: 1; padding: 12px; border: none; background: transparent; cursor: pointer; font-family: inherit; font-size: 14px; font-weight: 600; color: var(--on-accent); transition: color .25s;">개별 지원하기</button>
+          <button type="button" data-opt="all" style="position: relative; z-index: 1; padding: 12px; border: none; background: transparent; cursor: pointer; font-family: inherit; font-size: 14px; font-weight: 600; color: var(--muted); transition: color .25s;">전체 지원하기</button>
         </div>
       </div>
 
       <!-- brand select (individual) -->
-      <div id="brandSelect" style="display: none;">
+      <div id="brandSelect">
         <div style="font-size: 13px; font-weight: 600; margin-bottom: 4px;">매칭 대상 브랜드 <span class="req">*</span></div>
-        <div style="font-size: 12.5px; color: var(--muted); margin-bottom: 14px;">수동 지정해 주세요 · 중복 선택 가능 <span class="req" id="selCount"></span></div>
+        <div style="font-size: 12.5px; color: var(--muted); margin-bottom: 10px;">수동 지정해 주세요 · 중복 선택 가능 <span class="req" id="selCount"></span></div>
+        <div style="display: flex; gap: 8px; align-items: flex-start; margin-bottom: 14px; padding: 12px 14px; border-radius: var(--radius); background: var(--surface); border: 1px solid var(--accent); font-size: 13px; line-height: 1.55; color: var(--text); word-break: keep-all;"><span aria-hidden="true">📌</span><span>브랜드마다 진행 요건이 다릅니다. 각 브랜드의 <b>가이드 보기</b>로 가이드라인을 꼭 살펴본 후 지원해 주세요.</span></div>
         <div id="brandGrid" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 14px;"></div>
       </div>
 
@@ -379,13 +380,14 @@
   document.getElementById('mqB').innerHTML = bHtml;
 
   // option toggle
-  var supportType = 'all';
+  // 개별 지원이 왼쪽·기본값, 전체 지원이 오른쪽
+  var supportType = 'individual';
   var indicator = document.getElementById('optIndicator');
   var brandSelect = document.getElementById('brandSelect');
   var optBtns = document.querySelectorAll('[data-opt]');
   function setSupportType(t) {
     supportType = t;
-    indicator.style.transform = supportType === 'individual' ? 'translateX(100%)' : 'translateX(0)';
+    indicator.style.transform = supportType === 'all' ? 'translateX(100%)' : 'translateX(0)';
     optBtns.forEach(function (x) {
       x.style.color = x.getAttribute('data-opt') === supportType ? 'var(--on-accent)' : 'var(--muted)';
     });
@@ -642,7 +644,7 @@
     if (draft) {
       DRAFT_FIELDS.forEach(function (n) { var el = form.querySelector('[name="' + n + '"]'); if (el && draft[n]) el.value = draft[n]; });
       selected = (draft.selected || []).filter(function (n) { return formBrands.some(function (fb) { return fb.name === n; }); });
-      setSupportType(draft.supportType === 'individual' ? 'individual' : 'all');
+      setSupportType(draft.supportType === 'all' ? 'all' : 'individual');
       renderBrands();
     }
   } catch (err) {}
@@ -722,7 +724,7 @@
     form.reset();
     selected = []; renderBrands();
     setAgreed(false);
-    setSupportType('all');
+    setSupportType('individual');
     hideError();
     clearDraft();
   }
