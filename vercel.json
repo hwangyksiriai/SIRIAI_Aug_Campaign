@@ -1,13 +1,17 @@
 {
   "cleanUrls": true,
   "redirects": [
-    { "source": "/index-A.html", "destination": "/nov-1", "permanent": true },
-    { "source": "/index-B.html", "destination": "/nov-2", "permanent": true },
-    { "source": "/index-C.html", "destination": "/nov-3", "permanent": true },
-    { "source": "/index-D.html", "destination": "/nov-4", "permanent": true },
-    { "source": "/index-A", "destination": "/nov-1", "permanent": true },
-    { "source": "/index-B", "destination": "/nov-2", "permanent": true },
-    { "source": "/index-C", "destination": "/nov-3", "permanent": true },
-    { "source": "/index-D", "destination": "/nov-4", "permanent": true }
+    { "source": "/nov-1", "destination": "/sejgfb", "permanent": true },
+    { "source": "/nov-2", "destination": "/eaaeyf", "permanent": true },
+    { "source": "/nov-3", "destination": "/cpdr9t", "permanent": true },
+    { "source": "/nov-4", "destination": "/5g7v6y", "permanent": true },
+    { "source": "/index-A.html", "destination": "/sejgfb", "permanent": true },
+    { "source": "/index-B.html", "destination": "/eaaeyf", "permanent": true },
+    { "source": "/index-C.html", "destination": "/cpdr9t", "permanent": true },
+    { "source": "/index-D.html", "destination": "/5g7v6y", "permanent": true },
+    { "source": "/index-A", "destination": "/sejgfb", "permanent": true },
+    { "source": "/index-B", "destination": "/eaaeyf", "permanent": true },
+    { "source": "/index-C", "destination": "/cpdr9t", "permanent": true },
+    { "source": "/index-D", "destination": "/5g7v6y", "permanent": true }
   ]
 }
